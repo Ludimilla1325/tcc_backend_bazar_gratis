@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Master {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  email String @unique
+  senha String
+}
+
+model Loja {
+  id           Int           @id @default(autoincrement())
+  nome         String
+  localizacao  String
+  data_criacao DateTime
+  pontosMax    Int
+  Colaborador  Colaborador[]
+  Produto      Produto[]
+  Agendamento  Agendamento[]
+  Cliente      Cliente[]
+}
+
+model Colaborador {
+  id     Int     @id @default(autoincrement())
+  nome   String
+  email  String  @unique
+  cpf    String
+  ativo  Boolean
+  admin  Boolean
+  lojaId Int
+  Loja   Loja    @relation(fields: [lojaId], references: [id])
+
+  senha              String
+  Solicitacao_pontos Solicitacao_pontos[]
+}
+
+model Categoria {
+  id      Int       @id @default(autoincrement())
+  nome    String
+  Produto Produto[]
+}
+
+model Produto {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  descricao String
+  foto      String
+
+  categoriaId Int
+  Categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  valor       Int
+  quantidade  Int
+  lojaId      Int
+  Loja        Loja      @relation(fields: [lojaId], references: [id])
+  Compra      Compra[]
+}
+
+model Agendamento {
+  id      Int      @id @default(autoincrement())
+  data    DateTime
+  vagas_d Int
+  lojaId  Int
+  Loja    Loja     @relation(fields: [lojaId], references: [id])
+  Compra  Compra[]
+}
+
+model Compra {
+  id            Int         @id @default(autoincrement())
+  agendamentoId Int
+  Agendamento   Agendamento @relation(fields: [agendamentoId], references: [id])
+  produtoId     Int
+  Produto       Produto     @relation(fields: [produtoId], references: [id])
+  quantidade    Int
+}
+
+model Cliente {
+  id                  Int                   @id @default(autoincrement())
+  nome                String
+  email               String                @unique
+  telefone            String
+  cpf                 String
+  cep                 String
+  lojaId              Int
+  Loja                Loja                  @relation(fields: [lojaId], references: [id])
+  senha               String
+  pontos              Int
+  Solicitacao_pontos  Solicitacao_pontos[]
+  Agendamento_cliente Agendamento_cliente[]
+}
+
+model Solicitacao_pontos {
+  id            Int         @id @default(autoincrement())
+  clienteId     Int
+  Cliente       Cliente     @relation(fields: [clienteId], references: [id])
+  quantidade    Int
+  data_soli     DateTime
+  status        String
+  funcId        Int
+  Colaborador   Colaborador @relation(fields: [funcId], references: [id])
+  justi_cliente String
+  justi_funci   String
+}
+
+model Agendamento_cliente {
+  id            Int     @id @default(autoincrement())
+  clienteId     Int
+  Cliente       Cliente @relation(fields: [clienteId], references: [id])
+  agendamentoId Int
+  entregue      Boolean
+}
