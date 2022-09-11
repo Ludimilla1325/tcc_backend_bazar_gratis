@@ -1,18 +1,22 @@
 import express from "express";
 const app = express();
-const port = 3000;
+const port = 3001;
+import cors from "cors";
 import cliente_routes from "./Routes/Cliente.routes";
 import produto_routes from "./Routes/Produto.routes";
 import agendamento_routes from "./Routes/Agendamento.routes";
 import agendamentoCliente_routes from "./Routes/AgendamentoCliente.routes";
 import compra_routes from "./Routes/Compra.Routes";
 
+
+app.use(cors());
 app.use(express.json());
 app.use(
   express.urlencoded({
     extended: false,
   })
 );
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
