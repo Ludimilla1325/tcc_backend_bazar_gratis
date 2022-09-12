@@ -17,14 +17,7 @@ export async function confirmarEntrega(id: number) {
 
     const lista = await getAll(agendamento_cliente.agendamentoId);
 
-    lista.forEach(async (element) => {
-      const t = await handleQuantidades(element.produtoId, -element.quantidade);
-      const pontos = await handlePontos(
-        agendamento_cliente.clienteId,
-        -(element.quantidade * element.valor)
-      );
-    });
-
+    
     return query;
   }
 
