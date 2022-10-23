@@ -2,12 +2,11 @@ import express from "express";
 const app = express();
 const port = 3001;
 import cors from "cors";
-import cliente_routes from "./Routes/Cliente.routes";
-import produto_routes from "./Routes/Produto.routes";
-import agendamento_routes from "./Routes/Agendamento.routes";
-import agendamentoCliente_routes from "./Routes/AgendamentoCliente.routes";
-import compra_routes from "./Routes/Compra.Routes";
-
+import client_routes from "./Routes/Client.routes";
+import product_routes from "./Routes/Product.routes";
+import appointment_routes from "./Routes/Appointment.routes";
+import appointmentClient_routes from "./Routes/AppointmentClient.routes";
+import purchase_routes from "./Routes/Purchase.Routes";
 
 app.use(cors());
 app.use(express.json());
@@ -17,16 +16,15 @@ app.use(
   })
 );
 
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/cliente", cliente_routes);
-app.use("/produto", produto_routes);
-app.use("/agendamento", agendamento_routes);
-app.use("/agendamento-cliente", agendamentoCliente_routes);
-app.use("/compra", compra_routes);
+app.use("/cliente", client_routes);
+app.use("/produto", product_routes);
+app.use("/agendamento", appointment_routes);
+app.use("/agendamento-cliente", appointmentClient_routes);
+app.use("/compra", purchase_routes);
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);

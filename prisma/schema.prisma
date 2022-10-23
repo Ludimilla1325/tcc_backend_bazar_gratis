@@ -6,114 +6,119 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Master {
-  id    Int    @id @default(autoincrement())
-  nome  String
-  email String @unique
-  senha String
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
 }
 
-model Loja {
-  id           Int           @id @default(autoincrement())
-  nome         String
-  localizacao  String
-  data_criacao DateTime
-  pontosMax    Int
-  Colaborador  Colaborador[]
-  Produto      Produto[]
-  Agendamento  Agendamento[]
-  Cliente      Cliente[]
+model Store {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  localization       String
+  creation_date      DateTime
+  maxPoints          Int
+  Cooperator         Cooperator[]
+  Product            Product[]
+  Client_Appointment Client_Appointment[]
+  Client             Client[]
+  Appointment        Appointment[]
 }
 
-model Colaborador {
-  id     Int     @id @default(autoincrement())
-  nome   String
-  email  String  @unique
-  cpf    String
-  ativo  Boolean
-  admin  Boolean
-  lojaId Int
-  Loja   Loja    @relation(fields: [lojaId], references: [id])
+model Cooperator {
+  id      Int     @id @default(autoincrement())
+  name    String
+  email   String  @unique
+  cpf     String
+  active  Boolean
+  admin   Boolean
+  storeId Int
+  Store   Store   @relation(fields: [storeId], references: [id])
 
-  senha              String
-  Solicitacao_pontos Solicitacao_pontos[]
+  password            String
+  Points_solicitation Points_solicitation[]
 }
 
-model Categoria {
+model Category {
   id      Int       @id @default(autoincrement())
-  nome    String
-  Produto Produto[]
+  name    String
+  Product Product[]
 }
 
-model Produto {
-  id        Int    @id @default(autoincrement())
-  nome      String
-  descricao String
-  foto      String
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  photo       String
 
-  categoriaId Int
-  Categoria   Categoria @relation(fields: [categoriaId], references: [id])
-  valor       Int
-  quantidade  Int
-  lojaId      Int
-  Loja        Loja      @relation(fields: [lojaId], references: [id])
-  Compra      Compra[]
+  categoryId Int
+  Category   Category   @relation(fields: [categoryId], references: [id])
+  value      Int
+  quantity   Int
+  storeId    Int
+  Store      Store      @relation(fields: [storeId], references: [id])
+  Purchase   Purchase[]
 }
 
-model Agendamento {
-  id      Int      @id @default(autoincrement())
-  data    DateTime
-  vagas_d Int
-  lojaId  Int
-  Loja    Loja     @relation(fields: [lojaId], references: [id])
-  Compra  Compra[]
+model Appointment {
+  id                 Int                  @id @default(autoincrement())
+  appointment_date   DateTime
+  spots              Int
+  storeId            Int
+  Store              Store                @relation(fields: [storeId], references: [id])
+  Client_Appointment Client_Appointment[]
 }
 
-model Compra {
-  id            Int         @id @default(autoincrement())
-  agendamentoId Int
-  Agendamento   Agendamento @relation(fields: [agendamentoId], references: [id])
-  produtoId     Int
-  Produto       Produto     @relation(fields: [produtoId], references: [id])
-  quantidade    Int
+model Purchase {
+  id                   Int                @id @default(autoincrement())
+  client_AppointmentId Int
+  Client_Appointment   Client_Appointment @relation(fields: [client_AppointmentId], references: [id])
+  productId            Int
+  Product              Product            @relation(fields: [productId], references: [id])
+  quantity             Int
 }
 
-model Cliente {
+model Client {
   id                  Int                   @id @default(autoincrement())
-  nome                String
+  name                String
   email               String                @unique
-  telefone            String
+  phone               String
   cpf                 String
   cep                 String
-  lojaId              Int
-  Loja                Loja                  @relation(fields: [lojaId], references: [id])
-  senha               String
-  pontos              Int
-  Solicitacao_pontos  Solicitacao_pontos[]
-  Agendamento_cliente Agendamento_cliente[]
+  storeId             Int
+  Store               Store                 @relation(fields: [storeId], references: [id])
+  password            String
+  points              Int
+  Points_solicitation Points_solicitation[]
+  Client_Appointment  Client_Appointment[]
 }
 
-model Solicitacao_pontos {
+model Points_solicitation {
+  id                     Int        @id @default(autoincrement())
+  clientId               Int
+  Client                 Client     @relation(fields: [clientId], references: [id])
+  quantity               Int
+  request_date           DateTime
+  status                 String
+  employeeId             Int
+  Cooperator             Cooperator @relation(fields: [employeeId], references: [id])
+  client_justification   String
+  employee_justification String
+}
+
+model Client_Appointment {
   id            Int         @id @default(autoincrement())
-  clienteId     Int
-  Cliente       Cliente     @relation(fields: [clienteId], references: [id])
-  quantidade    Int
-  data_soli     DateTime
-  status        String
-  funcId        Int
-  Colaborador   Colaborador @relation(fields: [funcId], references: [id])
-  justi_cliente String
-  justi_funci   String
-}
-
-model Agendamento_cliente {
-  id            Int     @id @default(autoincrement())
-  clienteId     Int
-  Cliente       Cliente @relation(fields: [clienteId], references: [id])
-  agendamentoId Int
-  entregue      Boolean
+  clientId      Int
+  Client        Client      @relation(fields: [clientId], references: [id])
+  appointmentId Int
+  Appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  delivered     Boolean
+  Purchase      Purchase[]
+  Store         Store?      @relation(fields: [storeId], references: [id])
+  storeId       Int?
 }
