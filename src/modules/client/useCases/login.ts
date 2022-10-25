@@ -1,6 +1,6 @@
 import { prisma } from "../../../Prisma/client";
 import { CreateUserDTO } from "../dtos/CreateUserDTO";
-import { encryptar } from "../../../Utils/encryptar";
+import { hash } from "../../../Utils/hashUtils";
 
 export async function login(email: string) {
   // Verificar se o usuário já existe
@@ -10,5 +10,6 @@ export async function login(email: string) {
     },
   });
 
+  
   return userAlreadyExists;
 }

@@ -1,7 +1,7 @@
 import { Client } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
 import { CreateUserDTO } from "../dtos/CreateUserDTO";
-import { encryptar } from "../../../Utils/encryptar";
+import { hash } from "../../../Utils/hashUtils";
 
 export class CreateUserUseCase {
   async execute({
@@ -26,7 +26,7 @@ export class CreateUserUseCase {
       throw "User already exists!";
     }
 
-    password = encryptar(password);
+    password = hash(password);
     // Criar o usuário
     const user = await prisma.client.create({
       data: {

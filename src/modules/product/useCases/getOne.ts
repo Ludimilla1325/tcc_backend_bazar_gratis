@@ -1,6 +1,5 @@
 import { Prisma, Product } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
-import { encryptar } from "../../../Utils/encryptar";
 
 export class getOne {
   async execute(storeId: number, productId: number): Promise<Product[]> {
