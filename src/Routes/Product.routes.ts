@@ -6,6 +6,10 @@ import { ProdutoController } from "../Controller/ProductController";
 const controller = new ProdutoController();
 
 const router = Router();
-router.get(`/:loja_id`, controller.toList);
+router.get(`/:storeId`, controller.getAllProducts);
+router.get(`/:storeId/:productId`, controller.getProductById);
+router.put(`/:storeId/:productId`, controller.updateProduct);
+router.post(`/:storeId`, controller.createProduct);
+router.delete(`/:storeId/:productId`, controller.deleteProductById);
 
 export default router;

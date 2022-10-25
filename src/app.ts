@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const port = 3001;
+const port = 3002;
 import cors from "cors";
 import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/cliente", client_routes);
-app.use("/produto", product_routes);
+app.use("/product", product_routes);
 app.use("/agendamento", appointment_routes);
 app.use("/agendamento-cliente", appointmentClient_routes);
 app.use("/compra", purchase_routes);
