@@ -7,7 +7,9 @@ const controller = new ClienteController();
 
 const router = Router();
 router.post(`/`, controller.criar);
-
+router.get(`/`, controller.findClientByEmail);
+router.put(`/`, controller.update);
 router.post(`/login`, controller.login);
+router.post(`/pass`, controller.updatePass);
 
 export default router;

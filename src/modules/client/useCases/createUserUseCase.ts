@@ -1,6 +1,6 @@
 import { Client } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
-import { CreateUserDTO } from "../dtos/CreateUserDTO";
+import { ClientDTO } from "../dtos/ClientDTO";
 import { hash } from "../../../Utils/hashUtils";
 
 export class CreateUserUseCase {
@@ -13,7 +13,7 @@ export class CreateUserUseCase {
     storeId,
     password,
     points,
-  }: CreateUserDTO): Promise<Client> {
+  }: ClientDTO): Promise<Client> {
     // Verificar se o usuário já existe
     const userAlreadyExists = await prisma.client.findFirst({
       where: {

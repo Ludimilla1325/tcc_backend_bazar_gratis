@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/cliente", client_routes);
+app.use("/client", client_routes);
 app.use("/product", product_routes);
 app.use("/agendamento", appointment_routes);
 app.use("/agendamento-cliente", appointmentClient_routes);
