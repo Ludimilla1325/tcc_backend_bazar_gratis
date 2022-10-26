@@ -21,5 +21,17 @@ export async function createProduct(
     },
   });
 
-  return query;
+  if (query) {
+    return {
+      sucess: true,
+      data: null,
+      message: "Product added with sucess",
+    };
+  } else {
+    return {
+      sucess: false,
+      data: null,
+      message: "Problem in add product",
+    };
+  }
 }

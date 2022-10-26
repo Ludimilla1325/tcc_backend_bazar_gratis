@@ -2,7 +2,7 @@ import { Prisma, Product } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
 
 export class getAllProducts {
-  async execute(storeId: number): Promise<Product[]> {
+  async execute(storeId: number) {
     const products: Product[] = await prisma.$queryRaw(
       Prisma.sql`select p.id, p."name" , p.photo, p."categoryId" , p.value , p.quantity , 
       p."storeId" , c."name"  as categoria from "Product" p
@@ -10,6 +10,18 @@ export class getAllProducts {
     );
 
     console.log(products);
-    return products;
+    if (products) {
+      return {
+        sucess: true,
+        data: products,
+        message: null,
+      };
+    } else {
+      return {
+        sucess: false,
+        data: null,
+        message: "Problem in select all product",
+      };
+    }
   }
 }

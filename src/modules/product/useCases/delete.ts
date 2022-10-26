@@ -7,6 +7,19 @@ export async function deleteProduct(storeId: number, productId: number) {
       storeId,
     },
   });
+  if (query) {
+    return {
+      sucess: true,
+      data: null,
+      message: "Product deleted with sucess",
+    };
+  } else {
+    return {
+      sucess: false,
+      data: null,
+      message: "Problem in delete product",
+    };
+  }
 
   return query;
 }

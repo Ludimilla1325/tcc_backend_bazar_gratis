@@ -23,5 +23,17 @@ export async function updateProduct(
     },
   });
 
-  return query;
+  if (query) {
+    return {
+      sucess: true,
+      data: query,
+      message: null,
+    };
+  } else {
+    return {
+      sucess: false,
+      data: null,
+      message: "Problem in update product",
+    };
+  }
 }
