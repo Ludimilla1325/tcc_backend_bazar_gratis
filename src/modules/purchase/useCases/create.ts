@@ -1,6 +1,6 @@
 import { Purchase } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
-import { handlePoints } from "../../client/useCases/handlePoints";
+import { updatePoints } from "../../client/useCases/handlePoints";
 import { handleQuantities } from "../../product/useCases/handleQuantities";
 import { ICreatePurchase } from "../dtos/ICreatePurchase";
 export async function create({
@@ -28,7 +28,7 @@ export async function create({
     });
 
     const t = await handleQuantities(productId, -quantity);
-    const ponits = await handlePoints(2, -(quantity * product?.value));
+    const ponits = await updatePoints(2, -(quantity * product?.value));
 
     return query;
   }

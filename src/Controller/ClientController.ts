@@ -5,6 +5,7 @@ import { login } from "../modules/client/useCases/login";
 import { findByEmail } from "../modules/client/useCases/findClientByEmail";
 import { updateClient } from "../modules/client/useCases/updateClient";
 import { updatePassword } from "../modules/client/useCases/updatePassword";
+import { updatePoints } from "../modules/client/useCases/handlePoints";
 export class ClienteController {
   async criar(req: Request, res: Response) {
     const {
@@ -83,12 +84,25 @@ export class ClienteController {
   }
 
   async updatePass(req: Request, res: Response) {
-    const { email, oldPassword, newPassworld } = req.body;
+    const { email, oldPassword, newPassword } = req.body;
     try {
-      const result = await updatePassword(email, oldPassword, newPassworld);
+      const result = await updatePassword(email, oldPassword, newPassword);
       return res.status(200).json(result);
     } catch (error) {
       console.log(error);
+      return res.status(400).json(error);
+    }
+  }
+
+  async updatePoints(req: Request, res: Response) {
+    const { id, points } = req.body;
+
+    try {
+      const result = await updatePoints(id, points);
+      // @ts-expect-error
+      delete result.password;
+      return res.status(200).json(result);
+    } catch (error) {
       return res.status(400).json(error);
     }
   }
