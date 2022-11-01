@@ -23,7 +23,12 @@ export async function update(
   const master = await checkMasterById(operatorId);
   const admin_ = await getById(operatorId);
   if (!master && !admin_ && id != operatorId) {
-    throw "Operação não permitida!";
+ 
+    return {
+      sucess: false,
+      data: null,
+      message: "Operação não permitida!",
+    };
   }
 
   const data = password
@@ -51,5 +56,9 @@ export async function update(
     data: data,
   });
 
-  return cooperator;
+  return {
+    sucess: true,
+    data: cooperator,
+    message: null,
+  };
 }

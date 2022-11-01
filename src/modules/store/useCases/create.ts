@@ -20,7 +20,18 @@ export async function create(
       },
     });
 
-    return store;
+    return {
+      sucess: true,
+      data: store,
+      message: null
+    }; 
+
+   
   }
-  throw "Não foi possível criar a loja " + name;
+
+  return {
+    sucess: false,
+    data: null,
+    message: "Não foi possível criar a loja " + name,
+  }; 
 }

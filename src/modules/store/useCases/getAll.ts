@@ -5,5 +5,11 @@ export async function getAll() {
   // Verificar se o usuário já existe
 
   const stores = await prisma.store.findMany({});
-  return stores;
+
+
+  return {
+    sucess: true,
+    data: stores,
+    message: null,
+  }; 
 }

@@ -23,7 +23,16 @@ export async function update(
       },
     });
 
-    return store;
+    return {
+      sucess: true,
+      data: store,
+      message: null,
+    }; 
   }
-  throw "Não foi possível atualizar a loja " + name;
+
+  return {
+    sucess: false,
+    data: null,
+    message: "Não foi possível atualizar a loja " + name,
+  }; 
 }

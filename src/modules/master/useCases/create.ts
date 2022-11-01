@@ -11,7 +11,11 @@ export async function create({email,password, name}:CreateMasterDTO) {
   });
 
   if(userAlreadyExists){
-      throw "Já existe um usuário cadastrado com este email!"
+    return {
+      sucess: false,
+      data: null,
+      message: "Já existe um usuário cadastrado com este email!",
+    };
   }
   password=  hash(password);
   const master = await prisma.master.create({
@@ -22,6 +26,9 @@ export async function create({email,password, name}:CreateMasterDTO) {
     },
   });
 
-
-  return master;
+  return {
+    sucess: true,
+    data: master,
+    message: null,
+  };
 }

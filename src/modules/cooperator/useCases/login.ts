@@ -13,7 +13,11 @@ export async function login(email: string, password: string) {
   });
 
   if (!userAlreadyExists) {
-    throw "Usuário não encontrado!";
+    return {
+      sucess: false,
+      data: null,
+      message: "Usuãrio não encontrado!",
+    };
   }
 
   const validatePass = await compare(password, userAlreadyExists.password);
@@ -23,19 +27,28 @@ export async function login(email: string, password: string) {
     const token = jwt.sign({ id: userAlreadyExists.id }, secret, {
       expiresIn: 36000,
     });
+
     return {
-      user: {
-        id: userAlreadyExists.id,
-        email: userAlreadyExists.email,
-        name: userAlreadyExists.name,
-        cpf: userAlreadyExists.cpf,
-        active: userAlreadyExists.active,
-        admin: userAlreadyExists.admin,
-        storeId: userAlreadyExists.storeId,
+      sucess: true,
+      data: {
+        user: {
+          id: userAlreadyExists.id,
+          email: userAlreadyExists.email,
+          name: userAlreadyExists.name,
+          cpf: userAlreadyExists.cpf,
+          active: userAlreadyExists.active,
+          admin: userAlreadyExists.admin,
+          storeId: userAlreadyExists.storeId,
+        },
+        token,
       },
-      token,
+      message: null,
     };
   }
 
-  throw "Combinações Inválidas!";
+  return {
+    sucess: false,
+    data: null,
+    message: "Combinações Inválidas!",
+  };
 }

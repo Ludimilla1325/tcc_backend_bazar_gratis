@@ -9,7 +9,7 @@ export async function update({ email, password, name, id }: UpdateMasterDTO) {
   const data = password
     ? {
         email,
-        password:hash(password),
+        password: hash(password),
         name,
       }
     : {
@@ -26,8 +26,12 @@ export async function update({ email, password, name, id }: UpdateMasterDTO) {
   });
 
   return {
-    id,
-    email,
-    name,
+    sucess: true,
+    data: {
+      id,
+      email,
+      name,
+    },
+    message: null,
   };
 }

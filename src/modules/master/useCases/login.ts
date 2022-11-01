@@ -13,7 +13,11 @@ export async function login({ email, password }: LoginMasterDto) {
   });
 
   if (!userAlreadyExists) {
-    throw "Usuário não encontrado!";
+    return {
+      sucess: false,
+      data: null,
+      message: "Usuãrio não encontrado",
+    };
   }
 
   const validatePass = await compare(password, userAlreadyExists.password);
@@ -23,16 +27,22 @@ export async function login({ email, password }: LoginMasterDto) {
     const token = jwt.sign({ id: userAlreadyExists.id, storeId:0 }, secret, {
       expiresIn: 36000,
     });
+
     return {
-      user: {
+      sucess: true,
+      data: {
         id: userAlreadyExists.id,
         email: userAlreadyExists.email,
         name: userAlreadyExists.name,
       },
-      token,
+      message: null,
     };
+    
   }
 
-
-  throw "Combinações Inválidas!";
+  return {
+    sucess: false,
+    data: null,
+    message: "Combinações Inválidas!",
+  };
 }

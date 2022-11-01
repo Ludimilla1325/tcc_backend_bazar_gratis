@@ -26,7 +26,11 @@ export async function create(
   });
 
   if (userAlreadyExists) {
-    throw "Já existe um colaborador cadastrado com este email!";
+    return {
+      sucess: false,
+      data: null,
+      message: "Já existe um colaborador cadastrado com este email!",
+    };
   }
   password = hash(password);
   const cooperator = await prisma.cooperator.create({
@@ -34,12 +38,16 @@ export async function create(
       email,
       password,
       name,
-      active:true,
+      active: true,
       cpf,
       admin,
       storeId,
     },
   });
 
-  return cooperator;
+  return {
+    sucess: true,
+    data: cooperator,
+    message: null,
+  };
 }
