@@ -1,5 +1,5 @@
 export interface ICreatePurchase {
-  appointmentId: number;
+  client_AppointmentId: number;
   productId: number;
   quantity: number;
 }

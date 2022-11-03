@@ -4,33 +4,46 @@ import { updatePoints } from "../../client/useCases/handlePoints";
 import { handleQuantities } from "../../product/useCases/handleQuantities";
 import { ICreatePurchase } from "../dtos/ICreatePurchase";
 export async function create({
-  appointmentId,
+  client_AppointmentId,
   productId,
   quantity,
-}: ICreatePurchase): Promise<Purchase> {
+}: ICreatePurchase, clientId: number) {
   const product = await prisma.product.findFirst({
     where: {
-      id: productId,
+      id: Number(productId),
     },
   });
 
   if (product) {
     if (product.quantity < quantity) {
-      throw "Quantidade indisponível!";
+ 
+      return {
+        sucess: false,
+        data: null,
+        message:"Quantidade indisponível!",
+      };
     }
 
     const query = await prisma.purchase.create({
       data: {
-        client_AppointmentId: Number(appointmentId),
+        client_AppointmentId: Number(client_AppointmentId),
         productId: Number(productId),
         quantity: Number(quantity),
       },
     });
 
     const t = await handleQuantities(productId, -quantity);
-    const ponits = await updatePoints(2, -(quantity * product?.value));
+    const ponits = await updatePoints(clientId, -(quantity * product?.value));
 
-    return query;
+    return {
+      sucess: true,
+      data: query,
+      message: null,
+    };
   }
-  throw "Não foi possível registrar esta compra";
+  return {
+    sucess: false,
+    data: product,
+    message: "Não foi possível registrar esta compra",
+  };
 }
