@@ -2,7 +2,7 @@ import { Router } from "express";
 import { body, query } from "express-validator";
 
 import { ClienteController } from "../Controller/ClientController";
-import { authMiddleware } from "../Middlewares/AuthMiddlware";
+import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
 import { validator } from "../Middlewares/validator";
 //import { authMiddleware } from "../Middlewares/authMiddleware";
 
@@ -71,12 +71,27 @@ const email = [
 
 const router = Router();
 router.post(`/`, ...createClient, validator, controller.criar);
-router.get(`/`, authMiddleware, email, validator, controller.findClientByEmail);
-router.put(`/`, authMiddleware, email, validator, controller.update);
+router.get(
+  `/`,
+  authMiddleware,
+
+  email,
+  validator,
+  controller.findClientByEmail
+);
+router.put(
+  `/`,
+  authMiddleware,
+  roles(["user"]),
+  email,
+  validator,
+  controller.update
+);
 router.post(`/login`, ...login, validator, controller.login);
 router.put(
   `/pass`,
   authMiddleware,
+  roles(["user"]),
   ...updatePass,
   validator,
   controller.updatePass

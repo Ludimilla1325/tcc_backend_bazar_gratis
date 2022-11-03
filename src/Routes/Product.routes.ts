@@ -32,17 +32,18 @@ const product = [
 ];
 
 const router = Router();
-router.get(
-  `/:storeId`,
+router.get(`/:storeId`, authMiddleware, controller.getAllProducts);
+router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
+router.put(
+  `/:storeId/:productId`,
   authMiddleware,
   roles(["admin", "master"]),
-  controller.getAllProducts
+  controller.updateProduct
 );
-router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
-router.put(`/:storeId/:productId`, authMiddleware, controller.updateProduct);
 router.post(
   `/:storeId`,
   authMiddleware,
+  roles(["admin", "master"]),
   ...product,
   validator,
   controller.createProduct
@@ -50,6 +51,7 @@ router.post(
 router.delete(
   `/:storeId/:productId`,
   authMiddleware,
+  roles(["admin", "master"]),
   controller.deleteProductById
 );
 
