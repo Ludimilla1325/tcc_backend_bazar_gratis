@@ -24,9 +24,16 @@ export async function login(email: string, password: string) {
   console.log("chegueiaqui");
   if (validatePass) {
     console.log("chegueiaqui");
-    const token = jwt.sign({ id: userAlreadyExists.id }, secret, {
-      expiresIn: 36000,
-    });
+    const token = jwt.sign(
+      {
+        id: userAlreadyExists.id,
+        role: userAlreadyExists.admin ? "admin" : "cooperator",
+      },
+      secret,
+      {
+        expiresIn: 36000,
+      }
+    );
 
     return {
       sucess: true,

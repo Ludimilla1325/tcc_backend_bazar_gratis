@@ -1,11 +1,15 @@
 import { Router } from "express";
 
-import { AgendamentoController } from "../Controller/AppointmentController";
+import { AppointmentController } from "../Controller/AppointmentController";
 //import { authMiddleware } from "../Middlewares/authMiddleware";
 
-const controller = new AgendamentoController();
-
 const router = Router();
-router.get(`/:loja_id`, controller.listar);
+router.get(`/:loja_id`, AppointmentController.list);
+
+router.post(`/`, AppointmentController.create);
+
+router.put(`/`, AppointmentController.update);
+
+router.delete(`/:id`, AppointmentController.delete);
 
 export default router;
