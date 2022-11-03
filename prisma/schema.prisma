@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = "mysql://teste:teste@localhost:3306/tcc"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Master {
@@ -99,16 +99,16 @@ model Client {
 }
 
 model Points_solicitation {
-  id                     Int        @id @default(autoincrement())
+  id                     Int         @id @default(autoincrement())
   clientId               Int
-  Client                 Client     @relation(fields: [clientId], references: [id])
+  Client                 Client      @relation(fields: [clientId], references: [id])
   quantity               Int
   request_date           DateTime
   status                 String
-  employeeId             Int
-  Cooperator             Cooperator @relation(fields: [employeeId], references: [id])
+  employeeId             Int?
+  Cooperator             Cooperator? @relation(fields: [employeeId], references: [id])
   client_justification   String
-  employee_justification String
+  employee_justification String?
 }
 
 model Client_Appointment {

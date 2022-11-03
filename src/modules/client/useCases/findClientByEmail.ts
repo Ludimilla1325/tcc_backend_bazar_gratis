@@ -11,6 +11,6 @@ export async function findByEmail(email: string) {
     delete user.password;
     return { sucess: true, data: user, message: null };
   } else {
-    return { sucess: false, data: null, message: "User not found" };
+    return { sucess: false, data: null, message: "Usuário não encontrado" };
   }
 }

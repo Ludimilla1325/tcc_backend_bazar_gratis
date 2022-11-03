@@ -20,7 +20,7 @@ export class getAllProducts {
       return {
         sucess: false,
         data: null,
-        message: "Problem in select all product",
+        message: "Problema em selecionar todos os produtos",
       };
     }
   }

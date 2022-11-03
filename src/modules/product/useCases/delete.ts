@@ -11,13 +11,13 @@ export async function deleteProduct(storeId: number, productId: number) {
     return {
       sucess: true,
       data: null,
-      message: "Product deleted with sucess",
+      message: "Produto deletado com sucesso",
     };
   } else {
     return {
       sucess: false,
       data: null,
-      message: "Problem in delete product",
+      message: "Problema ao deletar o produto",
     };
   }
 

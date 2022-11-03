@@ -33,13 +33,13 @@ export async function updatePassword(
     return {
       sucess: true,
       data: null,
-      message: "Password changed with sucess",
+      message: "Senha alterada com sucesso",
     };
   } else {
     return {
       sucess: false,
       data: null,
-      message: "Old Password is not correct",
+      message: "Senha antiga inválida",
     };
   }
 }

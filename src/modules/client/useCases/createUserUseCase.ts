@@ -23,7 +23,7 @@ export class CreateUserUseCase {
 
     if (userAlreadyExists) {
       console.log(userAlreadyExists);
-      throw "User already exists!";
+      throw "Usuário não existe!";
     }
 
     password = hash(password);

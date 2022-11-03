@@ -18,7 +18,7 @@ export class getOne {
       return {
         sucess: false,
         data: null,
-        message: "Problem in select the product",
+        message: "Problema ao selecionar o produto",
       };
     }
   }

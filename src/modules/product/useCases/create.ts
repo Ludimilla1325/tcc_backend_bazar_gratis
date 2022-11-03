@@ -25,13 +25,13 @@ export async function createProduct(
     return {
       sucess: true,
       data: null,
-      message: "Product added with sucess",
+      message: "Produto adicionado com sucesso",
     };
   } else {
     return {
       sucess: false,
       data: null,
-      message: "Problem in add product",
+      message: "Problema ao adicionar produto",
     };
   }
 }

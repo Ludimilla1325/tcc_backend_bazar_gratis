@@ -2,6 +2,7 @@ import { Router } from "express";
 import { body, query } from "express-validator";
 
 import { ProdutoController } from "../Controller/ProductController";
+import { authMiddleware } from "../Middlewares/AuthMiddlware";
 import { validator } from "../Middlewares/validator";
 
 const controller = new ProdutoController();
@@ -31,10 +32,20 @@ const product = [
 ];
 
 const router = Router();
-router.get(`/:storeId`, controller.getAllProducts);
-router.get(`/:storeId/:productId`, controller.getProductById);
-router.put(`/:storeId/:productId`, controller.updateProduct);
-router.post(`/:storeId`, ...product, validator, controller.createProduct);
-router.delete(`/:storeId/:productId`, controller.deleteProductById);
+router.get(`/:storeId`, authMiddleware, controller.getAllProducts);
+router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
+router.put(`/:storeId/:productId`, authMiddleware, controller.updateProduct);
+router.post(
+  `/:storeId`,
+  authMiddleware,
+  ...product,
+  validator,
+  controller.createProduct
+);
+router.delete(
+  `/:storeId/:productId`,
+  authMiddleware,
+  controller.deleteProductById
+);
 
 export default router;

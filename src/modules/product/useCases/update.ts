@@ -27,13 +27,13 @@ export async function updateProduct(
     return {
       sucess: true,
       data: query,
-      message: null,
+      message: "Produto atualizado com sucesso",
     };
   } else {
     return {
       sucess: false,
       data: null,
-      message: "Problem in update product",
+      message: "Problema em atualizar o produtod",
     };
   }
 }

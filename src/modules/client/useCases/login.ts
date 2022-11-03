@@ -14,12 +14,11 @@ export async function login(email: string, password: string) {
   });
 
   if (!userAlreadyExists) {
-    return { sucess: false, data: null, message: "User not found" };
+    return { sucess: false, data: null, message: "Usuário não encontrado" };
   }
 
   const validatePass = await compare(password, userAlreadyExists.password);
   if (validatePass) {
-    console.log("chegueiaqui");
     const token = jwt.sign({ id: userAlreadyExists.id, storeId: 0 }, secret, {
       expiresIn: 36000,
     });
@@ -36,6 +35,6 @@ export async function login(email: string, password: string) {
       message: null,
     };
   } else {
-    return { sucess: false, data: null, message: "Password is not correct" };
+    return { sucess: false, data: null, message: "Senha incorreta" };
   }
 }
