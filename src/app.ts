@@ -25,9 +25,9 @@ app.get("/", (req, res) => {
 
 app.use("/client", client_routes);
 app.use("/product", product_routes);
-app.use("/agendamento", appointment_routes);
-app.use("/agendamento-cliente", appointmentClient_routes);
-app.use("/compra", purchase_routes);
+app.use("/appointment", appointment_routes);
+app.use("/appointment-client", appointmentClient_routes);
+app.use("/purchase", purchase_routes);
 app.use("/master", master_routes);
 app.use("/store", store_routes);
 app.use("/cooperator", cooperator_routes);

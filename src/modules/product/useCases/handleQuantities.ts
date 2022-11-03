@@ -7,7 +7,7 @@ export async function handleQuantities(
 ): Promise<Product[]> {
   // Verificar se o usuário já existe
   const products: Product[] = await prisma.$queryRaw(
-    Prisma.sql`update Produto set quantidade =  ((select DISTINCT quantidade where id = ${id}) + ${quantity}) where id = ${id}`
+    Prisma.sql`update Product set quantity =  ((select DISTINCT quantity where id = ${id}) + ${quantity}) where id = ${id}`
   );
 
   return products;

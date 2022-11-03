@@ -24,20 +24,26 @@ export async function login({ email, password }: LoginMasterDto) {
   console.log("chegueiaqui");
   if (validatePass) {
     console.log("chegueiaqui");
-    const token = jwt.sign({ id: userAlreadyExists.id, storeId:0 }, secret, {
-      expiresIn: 36000,
-    });
+    const token = jwt.sign(
+      { id: userAlreadyExists.id, role: "master" },
+      secret,
+      {
+        expiresIn: 36000,
+      }
+    );
 
     return {
       sucess: true,
       data: {
-        id: userAlreadyExists.id,
-        email: userAlreadyExists.email,
-        name: userAlreadyExists.name,
+        user: {
+          id: userAlreadyExists.id,
+          email: userAlreadyExists.email,
+          name: userAlreadyExists.name,
+        },
+        token,
       },
       message: null,
     };
-    
   }
 
   return {

@@ -14,8 +14,15 @@ export async function confirmDelivery(id: number) {
 
     const list = await getAll(appointment_client.appointmentId);
 
-    return query;
+    return {
+      sucess: true,
+      data: query,
+      message: null,
+    };
   }
-
-  throw "Nenhum Agendamento com este ID";
+  return {
+    sucess: false,
+    data: null,
+    message: "Nenhum Agendamento com este ID",
+  };
 }

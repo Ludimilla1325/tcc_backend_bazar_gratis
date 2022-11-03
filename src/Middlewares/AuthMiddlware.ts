@@ -1,4 +1,3 @@
-
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { TokenPayLoad } from "../Interfaces/TokenPayLoad";
@@ -8,6 +7,7 @@ declare global {
   namespace Express {
     interface Request {
       userId: number;
+      role: "admin" | "cooperator" | "master";
     }
   }
 }
@@ -30,15 +30,13 @@ export function authMiddleware(
     const data = jwt.verify(token, secret);
     //console.log(data);
 
-    const {id} = data as TokenPayLoad;
+    const { id ,role} = data as TokenPayLoad;
     req.userId = id;
-    
-    return next();
+    req.role = role;
 
+    return next();
   } catch (err) {
     console.log(err);
     return res.sendStatus(401);
   }
 }
-
-
