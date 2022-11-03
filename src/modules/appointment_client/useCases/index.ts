@@ -1,5 +1,6 @@
 import { create } from "./create";
 import { getAll } from "./getAll";
-import { confirmDelivery } from "./confirmarEntrega";
-
-export { create, getAll, confirmDelivery };
+import { confirmDelivery } from "./confirmDelivery";
+import { del } from "./delete";
+import { update } from "./update";
+export { create, getAll, confirmDelivery,del, update };

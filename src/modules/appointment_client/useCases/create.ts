@@ -6,7 +6,7 @@ export async function create({
   appointmentId,
   clientId,
   delivered,
-}: ICreateAppointmentClient): Promise<Client_Appointment> {
+}: ICreateAppointmentClient) {
   console.log(appointmentId, clientId, delivered);
   const query = await prisma.client_Appointment.create({
     data: {
@@ -15,5 +15,12 @@ export async function create({
       delivered: false,
     },
   });
-  return query;
+
+  //Cadastrar pedidos
+
+  return {
+    sucess: true,
+    data: query,
+    message: null,
+  };
 }
