@@ -19,9 +19,13 @@ export async function login(email: string, password: string) {
 
   const validatePass = await compare(password, userAlreadyExists.password);
   if (validatePass) {
-    const token = jwt.sign({ id: userAlreadyExists.id, storeId: 0 }, secret, {
-      expiresIn: 36000,
-    });
+    const token = jwt.sign(
+      { id: userAlreadyExists.id, role: "admin", storeId: 0 },
+      secret,
+      {
+        expiresIn: 36000,
+      }
+    );
     return {
       sucess: true,
       data: {

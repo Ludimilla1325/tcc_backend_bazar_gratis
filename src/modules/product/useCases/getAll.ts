@@ -9,7 +9,6 @@ export class getAllProducts {
       inner join "Category" c on p."categoryId"  = c.id where p."storeId" = ${storeId} order by c.name, p.name;`
     );
 
-    console.log(products);
     if (products) {
       return {
         sucess: true,

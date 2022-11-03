@@ -12,6 +12,21 @@ declare global {
   }
 }
 
+export const roles = (roles: any[]) => {
+  const data: any[] = [];
+  return (req: Request, res: Response, next: NextFunction) => {
+    roles.forEach((role) => {
+      if (req.role === role) {
+        data.push(role);
+      }
+      if (data.length == 0) {
+        return res.status(401).send("Not allowed");
+      }
+    });
+    next();
+  };
+};
+
 export function authMiddleware(
   req: Request,
   res: Response,
@@ -30,7 +45,7 @@ export function authMiddleware(
     const data = jwt.verify(token, secret);
     //console.log(data);
 
-    const { id ,role} = data as TokenPayLoad;
+    const { id, role } = data as TokenPayLoad;
     req.userId = id;
     req.role = role;
 

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { body, query } from "express-validator";
 
 import { ProdutoController } from "../Controller/ProductController";
-import { authMiddleware } from "../Middlewares/AuthMiddlware";
+import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
 import { validator } from "../Middlewares/validator";
 
 const controller = new ProdutoController();
@@ -32,7 +32,12 @@ const product = [
 ];
 
 const router = Router();
-router.get(`/:storeId`, authMiddleware, controller.getAllProducts);
+router.get(
+  `/:storeId`,
+  authMiddleware,
+  roles(["admin", "master"]),
+  controller.getAllProducts
+);
 router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
 router.put(`/:storeId/:productId`, authMiddleware, controller.updateProduct);
 router.post(
