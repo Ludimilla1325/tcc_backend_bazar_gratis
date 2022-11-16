@@ -29,11 +29,7 @@ export async function login(email: string, password: string) {
     return {
       sucess: true,
       data: {
-        user: {
-          id: userAlreadyExists.id,
-          email: userAlreadyExists.email,
-          name: userAlreadyExists.name,
-        },
+        user:userAlreadyExists,
         token,
       },
       message: null,

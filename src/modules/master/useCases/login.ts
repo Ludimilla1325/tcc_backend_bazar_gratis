@@ -21,9 +21,8 @@ export async function login({ email, password }: LoginMasterDto) {
   }
 
   const validatePass = await compare(password, userAlreadyExists.password);
-  console.log("chegueiaqui");
+  
   if (validatePass) {
-    console.log("chegueiaqui");
     const token = jwt.sign(
       { id: userAlreadyExists.id, role: "master" },
       secret,

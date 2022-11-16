@@ -8,7 +8,7 @@ const router = Router();
 
 router.get(`/:id`, authMiddleware, controller.getOne);
 router.get(`/`, authMiddleware, controller.getAll);
-router.post(`/`, authMiddleware, controller.create);
+//router.post(`/`, authMiddleware, controller.create);
 router.put(
   `/:id`,
   authMiddleware,

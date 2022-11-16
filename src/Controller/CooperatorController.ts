@@ -40,9 +40,10 @@ export class CooperatorController {
 
   static async login(req: Request, res: Response) {
     try {
+      console.log(req.body)
       const { email, password } = req.body;
       const exec = await login(email, password);
-
+console.log(exec)
       return res.status(200).json(exec);
     } catch (error) {
       return res.status(401).json(error);
