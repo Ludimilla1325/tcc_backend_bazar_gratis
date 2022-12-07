@@ -4,7 +4,7 @@ import { ICart } from "../dtos/ICart";
 export async function getAll(appointmentId: number) {
   const list: ICart[] = await prisma.$queryRaw(
     Prisma.sql`   select Purchase.id, Purchase.productId,Purchase.quantity,
-    Product.name,Product.description, Product.value from Purchase inner join Product on Product.id = productId where client_AppointmentId = ${Number(
+    Product.name,Product.description, Product.value,Product.description,Product.photo from Purchase inner join Product on Product.id = productId where client_AppointmentId = ${Number(
       appointmentId
     )}; `
   );
