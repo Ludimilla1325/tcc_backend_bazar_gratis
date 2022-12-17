@@ -4,26 +4,23 @@ import {
   getAll,
   confirmDelivery,
   del,
-  update
+  update,
 } from "../modules/appointment_client/useCases";
 import { ICreateAppointmentClient } from "../modules/appointment_client/dtos/ICreateAgendamentoCliente";
 export class AppointmentClientController {
   static async create(req: Request, res: Response) {
-    const body: ICreateAppointmentClient =
-      req.body;
+    const body: ICreateAppointmentClient = req.body;
     try {
       const useCase = await create(body);
 
       return res.status(201).json(useCase);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
 
   static async update(req: Request, res: Response) {
-    const body: ICreateAppointmentClient =
-      req.body;
+    const body: ICreateAppointmentClient = req.body;
     try {
       const useCase = await create(body);
 
@@ -33,8 +30,6 @@ export class AppointmentClientController {
       return res.status(400).json(error);
     }
   }
-
-
 
   static async getAll(req: Request, res: Response) {
     const clientId = Number(req.userId);
@@ -43,7 +38,6 @@ export class AppointmentClientController {
 
       return res.status(200).json(list);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

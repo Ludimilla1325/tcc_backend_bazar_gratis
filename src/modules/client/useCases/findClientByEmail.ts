@@ -4,6 +4,7 @@ export async function findByEmail(email: string) {
     where: {
       email: email,
     },
+    include: { Store: true },
   });
 
   if (user) {

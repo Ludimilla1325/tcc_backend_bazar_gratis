@@ -29,18 +29,9 @@ export class StoreController {
 
   static async get(req: Request, res: Response) {
     try {
-      console.log(req.role)
-      if (req.role == "master") {
-        const exec = await getAll();
+      const exec = await getAll();
 
-        return res.status(200).json(exec);
-      } else {
-        return res.status(200).json({
-          sucess: false,
-          data: null,
-          message: "Voce nao possui permissao para acessar esta rota",
-        });
-      }
+      return res.status(200).json(exec);
     } catch (error) {
       return res.status(400).json(error);
     }

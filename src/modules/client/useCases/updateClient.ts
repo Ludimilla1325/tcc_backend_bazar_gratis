@@ -7,8 +7,7 @@ export async function updateClient(
   email: string,
   phone: string,
   cep: string,
-  storeId: number,
-  points: number
+  storeId: number
 ): Promise<Client> {
   const user = await prisma.client.update({
     where: { email: email },
@@ -17,7 +16,6 @@ export async function updateClient(
       phone,
       cep,
       storeId: Number(storeId),
-      points: Number(points),
     },
   });
 

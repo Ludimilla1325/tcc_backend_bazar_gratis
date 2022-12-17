@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { body, query } from "express-validator";
+import { body, param, query } from "express-validator";
 
 import { ClienteController } from "../Controller/ClientController";
 import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
@@ -32,9 +32,6 @@ const createClient = [
 
   body("storeId").notEmpty(),
   body("storeId").isInt().withMessage(withMessage("storeId")),
-
-  body("points").notEmpty(),
-  body("points").isInt().withMessage(withMessage("points")),
 ];
 
 const login = [
@@ -65,14 +62,14 @@ const updatePoints = [
 ];
 
 const email = [
-  body("email").notEmpty(),
-  body("email").isString().withMessage(withMessage("email")),
+  param("email").notEmpty(),
+  param("email").isString().withMessage(withMessage("email")),
 ];
 
 const router = Router();
 router.post(`/`, ...createClient, validator, controller.criar);
 router.get(
-  `/`,
+  `/:email`,
   authMiddleware,
 
   email,
@@ -88,14 +85,10 @@ router.put(
   controller.update
 );
 router.post(`/login`, ...login, validator, controller.login);
-router.put(
-  `/pass`,
-  authMiddleware,
-  roles(["user"]),
-  ...updatePass,
-  validator,
-  controller.updatePass
-);
+router.post(`/link-to-reset-pass`, validator, controller.sendLinkToResetPass);
+router.get(`/reset-password/:id/:token`, controller.verifyResetPass);
+router.post(`/reset-password/:id/:token`, controller.resetPass);
+router.put(`/pass`, ...updatePass, validator, controller.updatePass);
 router.put(
   `/points`,
   authMiddleware,

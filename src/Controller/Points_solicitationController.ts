@@ -10,7 +10,7 @@ import {
 } from "../modules/points_solicitation/useCases/update";
 
 export class PointsSolicitationController {
- /* async create(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const { clientId, quantity, client_justification }: IPointsSolicitation =
       req.body;
 
@@ -42,7 +42,7 @@ export class PointsSolicitationController {
 
       return res.status(400).json(error);
     }
-  }*/
+  }
 
   async getOne(req: Request, res: Response) {
     const pointsSolicitationId = +req.params.id;
@@ -57,7 +57,7 @@ export class PointsSolicitationController {
 
   async getAll(req: Request, res: Response) {
     try {
-      const result = await getMany();
+      const result = await getMany(+req.params.id);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json(error);

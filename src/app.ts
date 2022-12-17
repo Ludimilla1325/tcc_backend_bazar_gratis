@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const port = 3002;
+const port = 3987;
 import cors from "cors";
 import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
@@ -11,6 +11,8 @@ import master_routes from "./Routes/Master.routes";
 import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
 import points_solicitation from "./Routes/Points_solicitation.routes";
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 app.use(
