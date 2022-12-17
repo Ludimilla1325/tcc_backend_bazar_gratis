@@ -12,6 +12,6 @@ router.get(`/teste`,(req,res)=>{
 router.get(`/`, authMiddleware,AppointmentClientController.getAll);
 router.post(`/`, authMiddleware,AppointmentClientController.create);
 router.put(`/`, authMiddleware,AppointmentClientController.update);
-router.patch(`/:id`, AppointmentClientController.confirmDelivery);
-router.delete(`/:id`, AppointmentClientController.delete);
+router.patch(`/:agendamento_cliente_id`, AppointmentClientController.confirmDelivery);
+router.delete(`/:agendamento_cliente_id`, authMiddleware,AppointmentClientController.delete);
 export default router;

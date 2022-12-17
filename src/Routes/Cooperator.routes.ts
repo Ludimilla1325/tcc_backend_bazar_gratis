@@ -11,7 +11,9 @@ router.post(`/login`, CooperatorController.login);
 
 router.patch(`/`, authMiddleware, CooperatorController.update);
 
-router.get(`/loja/:storeId`, authMiddleware, CooperatorController.getAll);
+router.patch(`/`, authMiddleware, CooperatorController.update);
+
+router.get(`/store/:storeId`, authMiddleware, CooperatorController.getAll);
 router.get(`/by_id/:id`, CooperatorController.getById);
 router.get(`/by_email/:email`, CooperatorController.getByEmail);
 
