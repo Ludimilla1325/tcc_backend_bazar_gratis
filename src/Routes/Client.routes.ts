@@ -79,8 +79,8 @@ router.get(
 router.put(
   `/`,
   authMiddleware,
-  roles(["user"]),
-  email,
+  body("email").notEmpty(),
+  body("email").isString().withMessage(withMessage("email")),
   validator,
   controller.update
 );

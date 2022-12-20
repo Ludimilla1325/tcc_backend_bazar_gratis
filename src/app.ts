@@ -11,6 +11,8 @@ import master_routes from "./Routes/Master.routes";
 import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
 import points_solicitation from "./Routes/Points_solicitation.routes";
+import category_routes from "./Routes/Categories.routes";
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -34,6 +36,7 @@ app.use("/master", master_routes);
 app.use("/store", store_routes);
 app.use("/cooperator", cooperator_routes);
 app.use("/pointsSolicitation", points_solicitation);
+app.use("/category", category_routes);
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);

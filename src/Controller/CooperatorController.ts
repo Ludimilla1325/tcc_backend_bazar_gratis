@@ -12,6 +12,7 @@ import {
   UpdateCooperatorDTO,
 } from "../modules/cooperator/dtos";
 import { getRounds } from "bcrypt";
+import { updatePassword } from "../modules/client/useCases/updatePassword";
 export class CooperatorController {
   static async create(req: Request, res: Response) {
     try {
@@ -21,6 +22,8 @@ export class CooperatorController {
 
       return res.status(201).json(exec);
     } catch (error) {
+      console.log(error);
+
       return res.status(400).json(error);
     }
   }
@@ -40,10 +43,10 @@ export class CooperatorController {
 
   static async login(req: Request, res: Response) {
     try {
-      console.log(req.body)
+      console.log(req.body);
       const { email, password } = req.body;
       const exec = await login(email, password);
-console.log(exec)
+      console.log(exec);
       return res.status(200).json(exec);
     } catch (error) {
       return res.status(401).json(error);
@@ -80,6 +83,17 @@ console.log(exec)
       return res.status(200).json(exec);
     } catch (error) {
       return res.status(401).json(error);
+    }
+  }
+
+  static async updatePass(req: Request, res: Response) {
+    const { email, oldPassword, newPassword } = req.body;
+    try {
+      const result = await updatePassword(email, oldPassword, newPassword);
+      return res.status(200).json(result);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json(error);
     }
   }
 }

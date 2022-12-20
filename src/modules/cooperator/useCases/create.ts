@@ -33,6 +33,7 @@ export async function create(
     };
   }
   password = hash(password);
+  storeId = +storeId;
   const cooperator = await prisma.cooperator.create({
     data: {
       email,

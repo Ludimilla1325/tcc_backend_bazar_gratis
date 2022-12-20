@@ -41,10 +41,10 @@ export class ProdutoController {
         name,
         description,
         photo,
-        categoryId,
-        value,
-        quantity,
-        storeId
+        +categoryId,
+        +value,
+        +quantity,
+        +storeId
       );
       return res.status(200).json(product);
     } catch (error) {

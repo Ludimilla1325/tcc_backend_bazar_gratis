@@ -11,7 +11,7 @@ router.post(`/login`, CooperatorController.login);
 
 router.patch(`/`, authMiddleware, CooperatorController.update);
 
-router.patch(`/`, authMiddleware, CooperatorController.update);
+router.put(`/pass`, authMiddleware, CooperatorController.updatePass);
 
 router.get(`/store/:storeId`, authMiddleware, CooperatorController.getAll);
 router.get(`/by_id/:id`, CooperatorController.getById);
