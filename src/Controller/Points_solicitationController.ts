@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { IPointsSolicitation } from "../modules/points_solicitation/dtos/pointsSolicitation";
 import { createPointsSolicitation } from "../modules/points_solicitation/useCases/create";
 import { deletePointsSolicitation } from "../modules/points_solicitation/useCases/delete";
-import { getMany } from "../modules/points_solicitation/useCases/getAll";
+import { getAll } from "../modules/points_solicitation/useCases/getAll";
 import { getOnePointSolicitation } from "../modules/points_solicitation/useCases/getOne";
 import {
   updatePointsSolicitation,
@@ -14,7 +14,7 @@ export class PointsSolicitationController {
     const { clientId, quantity, client_justification }: IPointsSolicitation =
       req.body;
 
-    const requestDate = new Date();
+    const request_date = new Date();
     const status = "SOLICITAÇÃO REALIZADA";
 
     console.log(
@@ -23,17 +23,18 @@ export class PointsSolicitationController {
       quantity,
       client_justification,
       status,
-      requestDate
+      request_date
     );
 
     try {
-      const result = await createPointsSolicitation(
-        +clientId,
-        +quantity,
-        requestDate,
+      const result = await createPointsSolicitation({
+        clientId,
+        quantity,
+        request_date,
         status,
-        client_justification
-      );
+        client_justification,
+      });
+
       console.log("result", result);
 
       return res.status(200).json(result);
@@ -57,7 +58,14 @@ export class PointsSolicitationController {
 
   async getAll(req: Request, res: Response) {
     try {
-      const result = await getMany(+req.params.id);
+      console.log({
+        clientId: Number(req.query.clientId),
+        loja_id: Number(req.query.loja_id),
+      })
+      const result = await getAll({
+        clientId: Number(req.query.clientId),
+        loja_id: Number(req.query.loja_id),
+      });
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json(error);
