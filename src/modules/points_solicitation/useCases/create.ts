@@ -1,21 +1,15 @@
 import { prisma } from "../../../Prisma/client";
+import { ICreatePointsSolicitaction } from "../dtos/createPointsSolicitations";
+import { IPointsSolicitation } from "../dtos/pointsSolicitation";
 
 export async function createPointsSolicitation(
-  clientId: number,
-  quantity: number,
-  request_date: Date,
-  status: string,
-  client_justification: string
+  
+  data:ICreatePointsSolicitaction
 ) {
-  const query = await prisma.points_solicitation.create({
-    data: {
-      clientId,
-      quantity,
-      request_date,
-      status,
-      client_justification,
-    },
-  });
+  const query = null;
+  //  await prisma.points_solicitation.create({
+  //   data:data,
+  // });
 
   console.log(query);
 

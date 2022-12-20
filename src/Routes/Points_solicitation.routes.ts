@@ -7,7 +7,8 @@ const controller = new PointsSolicitationController();
 const router = Router();
 
 router.get(`/one/:id`, authMiddleware, controller.getOne);
-router.get(`/:id`, authMiddleware, controller.getAll);
+
+router.get(`/`, authMiddleware,controller.getAll);
 router.post(`/`, authMiddleware, controller.create);
 router.put(
   `/:id`,
