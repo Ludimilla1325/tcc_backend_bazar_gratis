@@ -12,8 +12,6 @@ export async function sendLinkToResetPass(email: string) {
       },
     });
 
-    console.log("here", email, userAlreadyExists);
-
     if (!userAlreadyExists) {
       return {
         sucess: false,

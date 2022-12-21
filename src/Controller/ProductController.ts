@@ -59,14 +59,14 @@ export class ProdutoController {
 
     try {
       const product = await updateProduct(
-        productId,
+        +productId,
         name,
         description,
         photo,
-        categoryId,
-        value,
-        quantity,
-        storeId
+        +categoryId,
+        +value,
+        +quantity,
+        +storeId
       );
       return res.status(200).json(product);
     } catch (error) {

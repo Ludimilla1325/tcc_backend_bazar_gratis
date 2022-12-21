@@ -7,7 +7,6 @@ export async function create({
   clientId,
   delivered,
 }: ICreateAppointmentClient) {
-  console.log(appointmentId, clientId, delivered);
   const query = await prisma.client_Appointment.create({
     data: {
       appointmentId: Number(appointmentId),

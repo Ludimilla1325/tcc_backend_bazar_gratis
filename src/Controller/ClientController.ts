@@ -69,7 +69,6 @@ export class ClienteController {
 
   async verifyResetPass(req: Request, res: Response) {
     const { id, token } = req.params;
-    console.log("id", id, token);
 
     try {
       const result = await verifyResetPass(id, token);
@@ -89,7 +88,6 @@ export class ClienteController {
   async resetPass(req: Request, res: Response) {
     const { id, token } = req.params;
     const { password, confirmPassword } = req.body;
-    console.log("id", id, token);
 
     try {
       const result = await resetPass(id, token, password, confirmPassword);

@@ -22,7 +22,6 @@ export class CreateUserUseCase {
     });
 
     if (userAlreadyExists) {
-      console.log(userAlreadyExists);
       throw "Usuário já existe!";
     }
 

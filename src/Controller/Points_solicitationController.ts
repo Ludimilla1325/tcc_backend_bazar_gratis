@@ -28,14 +28,12 @@ export class PointsSolicitationController {
 
     try {
       const result = await createPointsSolicitation({
-        clientId,
-        quantity,
+        clientId: +clientId,
+        quantity: +quantity,
         request_date,
         status,
         client_justification,
       });
-
-      console.log("result", result);
 
       return res.status(200).json(result);
     } catch (error) {
@@ -61,7 +59,7 @@ export class PointsSolicitationController {
       console.log({
         clientId: Number(req.query.clientId),
         loja_id: Number(req.query.loja_id),
-      })
+      });
       const result = await getAll({
         clientId: Number(req.query.clientId),
         loja_id: Number(req.query.loja_id),

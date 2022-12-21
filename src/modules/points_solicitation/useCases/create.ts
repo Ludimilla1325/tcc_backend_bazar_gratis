@@ -3,15 +3,11 @@ import { ICreatePointsSolicitaction } from "../dtos/createPointsSolicitations";
 import { IPointsSolicitation } from "../dtos/pointsSolicitation";
 
 export async function createPointsSolicitation(
-  
-  data:ICreatePointsSolicitaction
+  data: ICreatePointsSolicitaction
 ) {
-  const query = null;
-  //  await prisma.points_solicitation.create({
-  //   data:data,
-  // });
-
-  console.log(query);
+  const query = await prisma.points_solicitation.create({
+    data: data,
+  });
 
   if (query) {
     return {

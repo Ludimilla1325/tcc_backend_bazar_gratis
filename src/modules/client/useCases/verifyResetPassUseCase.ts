@@ -9,8 +9,6 @@ export async function verifyResetPass(id: string, token: string) {
     },
   });
 
-  console.log("user", token, userAlreadyExists);
-
   if (!userAlreadyExists) {
     return {
       sucess: false,
@@ -29,8 +27,6 @@ export async function verifyResetPass(id: string, token: string) {
       message: "Verificado",
     };
   } catch (error) {
-    console.log("err", error);
-
     return {
       sucess: false,
       data: null,

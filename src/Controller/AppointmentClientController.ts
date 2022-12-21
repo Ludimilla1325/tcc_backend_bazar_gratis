@@ -44,7 +44,6 @@ export class AppointmentClientController {
 
   static async confirmDelivery(req: Request, res: Response) {
     const agendamento_cliente_id = Number(req.params.agendamento_cliente_id);
-    console.log(agendamento_cliente_id);
     try {
       const list = await confirmDelivery(agendamento_cliente_id);
 

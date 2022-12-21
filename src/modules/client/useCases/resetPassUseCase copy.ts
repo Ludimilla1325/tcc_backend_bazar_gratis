@@ -15,8 +15,6 @@ export async function resetPass(
     },
   });
 
-  console.log("user", token, userAlreadyExists);
-
   if (!userAlreadyExists) {
     return {
       sucess: false,
@@ -45,8 +43,6 @@ export async function resetPass(
       message: "Senha atualizada com sucesso!",
     };
   } catch (error) {
-    console.log("err", error);
-
     return {
       sucess: false,
       data: null,
