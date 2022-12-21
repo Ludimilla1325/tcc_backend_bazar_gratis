@@ -15,16 +15,7 @@ export class PointsSolicitationController {
       req.body;
 
     const request_date = new Date();
-    const status = "SOLICITAÇÃO REALIZADA";
-
-    console.log(
-      "test",
-      clientId,
-      quantity,
-      client_justification,
-      status,
-      request_date
-    );
+    const status = "EM ANDAMENTO";
 
     try {
       const result = await createPointsSolicitation({

@@ -6,6 +6,18 @@ export async function updatePointsSolicitationAcceptOrNot(
   employeeId: number,
   employee_justification: string
 ) {
+  const pointsSolicitation = await prisma.points_solicitation.findFirst({
+    where: { id },
+  });
+
+  if (!pointsSolicitation) {
+    return {
+      sucess: false,
+      data: null,
+      message: "Solicitação de ponto não encontrada",
+    };
+  }
+
   const query = await prisma.points_solicitation.update({
     where: { id },
     data: {
@@ -16,6 +28,19 @@ export async function updatePointsSolicitationAcceptOrNot(
   });
 
   if (query) {
+    if (status === "APROVADO") {
+      const client = await prisma.client.findUnique({
+        where: { id: pointsSolicitation.clientId },
+      });
+
+      if (client) {
+        await prisma.client.update({
+          where: { id: pointsSolicitation.clientId },
+          data: { points: client?.points + pointsSolicitation.quantity },
+        });
+      }
+    }
+
     return {
       sucess: true,
       data: null,
