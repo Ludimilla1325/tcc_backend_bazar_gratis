@@ -2,7 +2,7 @@ import { Purchase } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
 import { updatePoints } from "../../client/useCases/handlePoints";
 import { handleQuantities } from "../../product/useCases/handleQuantities";
-import { ICreatePurchase } from "../dtos/ICreatePurchase";
+import { ICreatePurchase } from "../dtos/CreatePurchaseDTO";
 export async function delet(purchaseId: number, clientId: number) {
   const query = await prisma.purchase.delete({
     where: { id: purchaseId },
@@ -14,7 +14,10 @@ export async function delet(purchaseId: number, clientId: number) {
   });
   if (product) {
     const t = await handleQuantities(query.productId, +query.quantity);
-    const ponits = await updatePoints(clientId, +(query.quantity * product.value));
+    const ponits = await updatePoints(
+      clientId,
+      +(query.quantity * product.value)
+    );
 
     return {
       sucess: true,

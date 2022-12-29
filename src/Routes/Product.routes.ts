@@ -1,11 +1,9 @@
 import { Router } from "express";
-import { body, query } from "express-validator";
+import { body } from "express-validator";
 
-import { ProdutoController } from "../Controller/ProductController";
 import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
-import { validator } from "../Middlewares/validator";
-
-const controller = new ProdutoController();
+import { validator } from "../Middlewares/Validator";
+import { ProdutoController } from "../Controller/ProductController";
 
 export function withMessage(param: string) {
   return `Necessario informar parametro ${param}`;
@@ -32,13 +30,17 @@ const product = [
 ];
 
 const router = Router();
-router.get(`/:storeId`, authMiddleware, controller.getAllProducts);
-router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
+router.get(`/:storeId`, authMiddleware, ProdutoController.getAllProducts);
+router.get(
+  `/:storeId/:productId`,
+  authMiddleware,
+  ProdutoController.getProductById
+);
 router.put(
   `/:storeId/:productId`,
   authMiddleware,
   roles(["admin", "master"]),
-  controller.updateProduct
+  ProdutoController.updateProduct
 );
 router.post(
   `/:storeId`,
@@ -46,13 +48,13 @@ router.post(
   roles(["admin", "master"]),
   ...product,
   validator,
-  controller.createProduct
+  ProdutoController.createProduct
 );
 router.delete(
   `/:storeId/:productId`,
   authMiddleware,
   roles(["admin", "master"]),
-  controller.deleteProductById
+  ProdutoController.deleteProductById
 );
 
 export default router;

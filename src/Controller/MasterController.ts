@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { create, update, login } from "../modules/master/useCases";
+import { create, update, login } from "../Modules/master/useCases";
 import {
   CreateMasterDTO,
   LoginMasterDto,
   UpdateMasterDTO,
-} from "../modules/master/dtos";
+} from "../Modules/master/dtos";
+
 export class MasterController {
   static async criar(req: Request, res: Response) {
     try {

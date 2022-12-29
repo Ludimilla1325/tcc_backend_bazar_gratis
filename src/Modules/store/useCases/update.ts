@@ -18,7 +18,7 @@ export async function update(
       data: {
         name,
         localization,
-        maxPoints,
+        maxPoints: +maxPoints,
         creation_date: new Date(),
       },
     });
@@ -27,12 +27,12 @@ export async function update(
       sucess: true,
       data: store,
       message: null,
-    }; 
+    };
   }
 
   return {
     sucess: false,
     data: null,
     message: "Não foi possível atualizar a loja " + name,
-  }; 
+  };
 }

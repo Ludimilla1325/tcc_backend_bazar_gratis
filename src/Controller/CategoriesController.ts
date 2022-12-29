@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { getAll } from "../modules/category/useCases/getAll";
+import { getAll } from "../Modules/category/useCases/getAll";
+
 export class CategoryController {
   static async getAll(req: Request, res: Response) {
     try {

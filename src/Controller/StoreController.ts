@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { create, update, getById, getAll } from "../modules/store/useCases";
-import { CreateStoreDTO, UpdateStoreDTO } from "../modules/store/dtos";
+import { create, update, getById, getAll } from "../Modules/store/useCases";
+import { CreateStoreDTO, UpdateStoreDTO } from "../Modules/store/dtos";
+
 export class StoreController {
   static async create(req: Request, res: Response) {
     try {

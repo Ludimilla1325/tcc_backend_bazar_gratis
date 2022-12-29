@@ -6,11 +6,11 @@ import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
 import appointment_routes from "./Routes/Appointment.routes";
 import appointmentClient_routes from "./Routes/AppointmentClient.routes";
-import purchase_routes from "./Routes/Purchase.Routes";
+import purchase_routes from "./Routes/Purchase.routes";
 import master_routes from "./Routes/Master.routes";
 import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
-import points_solicitation from "./Routes/Points_solicitation.routes";
+import points_solicitation from "./Routes/PointsSolicitation.routes";
 import category_routes from "./Routes/Categories.routes";
 
 app.set("view engine", "ejs");

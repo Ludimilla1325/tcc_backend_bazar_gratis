@@ -2,7 +2,7 @@ import { prisma } from "../../../Prisma/client";
 import { getAll } from "../../purchase/useCases/getAll";
 import { getById } from "./getById";
 import { delet } from "../../purchase/useCases/delete";
-import { ICreateAppointmentClient } from "../dtos/ICreateAgendamentoCliente";
+import { ICreateAppointmentClient } from "../dtos/CreateAgendamentoClienteDTO";
 
 export async function del(id: number) {
   const data = await getAll(id);

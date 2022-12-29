@@ -15,7 +15,7 @@ export async function create(
       data: {
         name,
         localization,
-        maxPoints,
+        maxPoints: +maxPoints,
         creation_date: new Date(),
       },
     });
@@ -23,15 +23,13 @@ export async function create(
     return {
       sucess: true,
       data: store,
-      message: null
-    }; 
-
-   
+      message: null,
+    };
   }
 
   return {
     sucess: false,
     data: null,
     message: "Não foi possível criar a loja " + name,
-  }; 
+  };
 }

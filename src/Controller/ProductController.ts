@@ -1,12 +1,13 @@
 import { create } from "domain";
 import { Request, Response } from "express";
-import { getAllProducts } from "../modules/product/useCases";
-import { getOne } from "../modules/product/useCases/getOne";
-import { createProduct } from "../modules/product/useCases/create";
-import { updateProduct } from "../modules/product/useCases/update";
-import { deleteProduct } from "../modules/product/useCases/delete";
+import { getAllProducts } from "../Modules/product/useCases";
+import { getOne } from "../Modules/product/useCases/getOne";
+import { createProduct } from "../Modules/product/useCases/create";
+import { updateProduct } from "../Modules/product/useCases/update";
+import { deleteProduct } from "../Modules/product/useCases/delete";
+
 export class ProdutoController {
-  async getAllProducts(req: Request, res: Response) {
+  static async getAllProducts(req: Request, res: Response) {
     const storeId = Number(req.params.storeId);
     try {
       const list = new getAllProducts();
@@ -20,7 +21,7 @@ export class ProdutoController {
     }
   }
 
-  async getProductById(req: Request, res: Response) {
+  static async getProductById(req: Request, res: Response) {
     const storeId = Number(req.params.storeId);
     const productId = Number(req.params.productId);
 
@@ -33,7 +34,7 @@ export class ProdutoController {
       return res.status(400).json(error);
     }
   }
-  async createProduct(req: Request, res: Response) {
+  static async createProduct(req: Request, res: Response) {
     const storeId = Number(req.params.storeId);
     const { name, description, photo, categoryId, value, quantity } = req.body;
     try {
@@ -52,7 +53,7 @@ export class ProdutoController {
       return res.status(400).json(error);
     }
   }
-  async updateProduct(req: Request, res: Response) {
+  static async updateProduct(req: Request, res: Response) {
     const storeId = Number(req.params.storeId);
     const productId = Number(req.params.productId);
     const { name, description, photo, categoryId, value, quantity } = req.body;
@@ -75,7 +76,7 @@ export class ProdutoController {
     }
   }
 
-  async deleteProductById(req: Request, res: Response) {
+  static async deleteProductById(req: Request, res: Response) {
     const storeId = Number(req.params.storeId);
     const productId = Number(req.params.productId);
 

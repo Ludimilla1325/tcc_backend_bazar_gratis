@@ -1,6 +1,6 @@
 import { prisma } from "../../../Prisma/client";
-import { ICreatePointsSolicitaction } from "../dtos/createPointsSolicitations";
-import { IPointsSolicitation } from "../dtos/pointsSolicitation";
+import { ICreatePointsSolicitaction } from "../dtos/CreatePointsSolicitationsDTO";
+import { IPointsSolicitation } from "../dtos/PointsSolicitationDTO";
 
 export async function createPointsSolicitation(
   data: ICreatePointsSolicitaction

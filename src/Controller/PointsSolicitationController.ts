@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { IPointsSolicitation } from "../modules/points_solicitation/dtos/pointsSolicitation";
-import { createPointsSolicitation } from "../modules/points_solicitation/useCases/create";
-import { deletePointsSolicitation } from "../modules/points_solicitation/useCases/delete";
-import { getAll } from "../modules/points_solicitation/useCases/getAll";
-import { getOnePointSolicitation } from "../modules/points_solicitation/useCases/getOne";
+import { IPointsSolicitation } from "../Modules/points_solicitation/dtos/PointsSolicitationDTO";
+import { createPointsSolicitation } from "../Modules/points_solicitation/useCases/create";
+import { deletePointsSolicitation } from "../Modules/points_solicitation/useCases/delete";
+import { getAll } from "../Modules/points_solicitation/useCases/getAll";
+import { getOnePointSolicitation } from "../Modules/points_solicitation/useCases/getOne";
 import {
   updatePointsSolicitation,
   updatePointsSolicitationAcceptOrNot,
-} from "../modules/points_solicitation/useCases/update";
+} from "../Modules/points_solicitation/useCases/update";
 
 export class PointsSolicitationController {
-  async create(req: Request, res: Response) {
+  static async create(req: Request, res: Response) {
     const { clientId, quantity, client_justification }: IPointsSolicitation =
       req.body;
 
@@ -34,7 +34,7 @@ export class PointsSolicitationController {
     }
   }
 
-  async getOne(req: Request, res: Response) {
+  static async getOne(req: Request, res: Response) {
     const pointsSolicitationId = +req.params.id;
 
     try {
@@ -45,7 +45,7 @@ export class PointsSolicitationController {
     }
   }
 
-  async getAll(req: Request, res: Response) {
+  static async getAll(req: Request, res: Response) {
     try {
       console.log({
         clientId: Number(req.query.clientId),
@@ -61,7 +61,7 @@ export class PointsSolicitationController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  static async update(req: Request, res: Response) {
     const {
       clientId,
       quantity,
@@ -90,7 +90,10 @@ export class PointsSolicitationController {
     }
   }
 
-  async updatePointsSolicitationAcceptOrNot(req: Request, res: Response) {
+  static async updatePointsSolicitationAcceptOrNot(
+    req: Request,
+    res: Response
+  ) {
     const { status, employeeId, employee_justification }: IPointsSolicitation =
       req.body;
     const pointsSolicitationId = +req.params.id;
@@ -108,7 +111,7 @@ export class PointsSolicitationController {
     }
   }
 
-  async delete(req: Request, res: Response) {
+  static async delete(req: Request, res: Response) {
     const pointsSolicitationId = +req.params.id;
     try {
       const result = await deletePointsSolicitation(pointsSolicitationId);

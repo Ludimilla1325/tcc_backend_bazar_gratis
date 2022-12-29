@@ -6,13 +6,13 @@ import {
   getAll,
   getById,
   getByEmail,
-} from "../modules/cooperator/useCases";
+} from "../Modules/cooperator/useCases";
 import {
   CreateCooperatorDTO,
   UpdateCooperatorDTO,
-} from "../modules/cooperator/dtos";
-import { getRounds } from "bcrypt";
-import { updatePassword } from "../modules/client/useCases/updatePassword";
+} from "../Modules/cooperator/dtos";
+import { updatePassword } from "../Modules/client/useCases/updatePassword";
+
 export class CooperatorController {
   static async create(req: Request, res: Response) {
     try {
@@ -31,11 +31,12 @@ export class CooperatorController {
   static async update(req: Request, res: Response) {
     try {
       const data: UpdateCooperatorDTO = req.body;
-      const userId = req.userId;
-      const exec = await update(data, userId);
+      const exec = await update(data);
 
       return res.status(201).json(exec);
     } catch (error) {
+      console.log(error);
+
       return res.status(400).json(error);
     }
   }

@@ -1,12 +1,10 @@
 import { Router } from "express";
-import { body, param, query } from "express-validator";
+import { body, param } from "express-validator";
 
 import { ClienteController } from "../Controller/ClientController";
-import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
-import { validator } from "../Middlewares/validator";
-//import { authMiddleware } from "../Middlewares/authMiddleware";
+import { authMiddleware } from "../Middlewares/AuthMiddlware";
+import { validator } from "../Middlewares/Validator";
 
-const controller = new ClienteController();
 export function withMessage(param: string) {
   return `Necessario informar parametro ${param}`;
 }
@@ -67,14 +65,14 @@ const email = [
 ];
 
 const router = Router();
-router.post(`/`, ...createClient, validator, controller.criar);
+router.post(`/`, ...createClient, validator, ClienteController.criar);
 router.get(
   `/:email`,
   authMiddleware,
 
   email,
   validator,
-  controller.findClientByEmail
+  ClienteController.findClientByEmail
 );
 router.put(
   `/`,
@@ -82,19 +80,23 @@ router.put(
   body("email").notEmpty(),
   body("email").isString().withMessage(withMessage("email")),
   validator,
-  controller.update
+  ClienteController.update
 );
-router.post(`/login`, ...login, validator, controller.login);
-router.post(`/link-to-reset-pass`, validator, controller.sendLinkToResetPass);
-router.get(`/reset-password/:id/:token`, controller.verifyResetPass);
-router.post(`/reset-password/:id/:token`, controller.resetPass);
-router.put(`/pass`, ...updatePass, validator, controller.updatePass);
+router.post(`/login`, ...login, validator, ClienteController.login);
+router.post(
+  `/link-to-reset-pass`,
+  validator,
+  ClienteController.sendLinkToResetPass
+);
+router.get(`/reset-password/:id/:token`, ClienteController.verifyResetPass);
+router.post(`/reset-password/:id/:token`, ClienteController.resetPass);
+router.put(`/pass`, ...updatePass, validator, ClienteController.updatePass);
 router.put(
   `/points`,
   authMiddleware,
   ...updatePoints,
   validator,
-  controller.updatePoints
+  ClienteController.updatePoints
 );
 
 export default router;

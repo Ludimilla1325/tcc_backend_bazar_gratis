@@ -5,8 +5,9 @@ import {
   confirmDelivery,
   del,
   update,
-} from "../modules/appointment_client/useCases";
-import { ICreateAppointmentClient } from "../modules/appointment_client/dtos/ICreateAgendamentoCliente";
+} from "../Modules/appointment_client/useCases";
+import { ICreateAppointmentClient } from "../Modules/appointment_client/dtos/CreateAgendamentoClienteDTO";
+
 export class AppointmentClientController {
   static async create(req: Request, res: Response) {
     const body: ICreateAppointmentClient = req.body;

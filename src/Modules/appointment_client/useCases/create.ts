@@ -1,6 +1,6 @@
 import { Client_Appointment } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
-import { ICreateAppointmentClient } from "../dtos/ICreateAgendamentoCliente";
+import { ICreateAppointmentClient } from "../dtos/CreateAgendamentoClienteDTO";
 
 export async function create({
   appointmentId,

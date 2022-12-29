@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../../../Prisma/client";
-import { ICart } from "../dtos/ICart";
+import { ICart } from "../dtos/CartDTO";
 export async function getAll(appointmentId: number) {
   const list: ICart[] = await prisma.$queryRaw(
     Prisma.sql`   select Purchase.id, Purchase.productId,Purchase.quantity,

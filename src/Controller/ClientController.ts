@@ -1,16 +1,17 @@
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "../modules/client/useCases/createUserUseCase";
-import { ClientDTO } from "../modules/client/dtos/ClientDTO";
-import { login } from "../modules/client/useCases/login";
-import { findByEmail } from "../modules/client/useCases/findClientByEmail";
-import { updateClient } from "../modules/client/useCases/updateClient";
-import { updatePassword } from "../modules/client/useCases/updatePassword";
-import { updatePoints } from "../modules/client/useCases/handlePoints";
-import { sendLinkToResetPass } from "../modules/client/useCases/forgotPassUseCase";
-import { verifyResetPass } from "../modules/client/useCases/verifyResetPassUseCase";
-import { resetPass } from "../modules/client/useCases/resetPassUseCase copy";
+import { CreateUserUseCase } from "../Modules/client/useCases/createUserUseCase";
+import { ClientDTO } from "../Modules/client/dtos/ClientDTO";
+import { login } from "../Modules/client/useCases/login";
+import { findByEmail } from "../Modules/client/useCases/findClientByEmail";
+import { updateClient } from "../Modules/client/useCases/updateClient";
+import { updatePassword } from "../Modules/client/useCases/updatePassword";
+import { updatePoints } from "../Modules/client/useCases/handlePoints";
+import { sendLinkToResetPass } from "../Modules/client/useCases/forgotPassUseCase";
+import { verifyResetPass } from "../Modules/client/useCases/verifyResetPassUseCase";
+import { resetPass } from "../Modules/client/useCases/resetPassUseCase copy";
+
 export class ClienteController {
-  async criar(req: Request, res: Response) {
+  static async criar(req: Request, res: Response) {
     const { name, email, phone, cpf, cep, storeId, password }: ClientDTO =
       req.body;
     try {
@@ -38,7 +39,7 @@ export class ClienteController {
     }
   }
 
-  async login(req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     const { email, password }: ClientDTO = req.body;
     try {
       const result = await login(email, password);
@@ -52,7 +53,7 @@ export class ClienteController {
     }
   }
 
-  async sendLinkToResetPass(req: Request, res: Response) {
+  static async sendLinkToResetPass(req: Request, res: Response) {
     const { email }: ClientDTO = req.body;
     try {
       const result = await sendLinkToResetPass(email);
@@ -67,7 +68,7 @@ export class ClienteController {
     }
   }
 
-  async verifyResetPass(req: Request, res: Response) {
+  static async verifyResetPass(req: Request, res: Response) {
     const { id, token } = req.params;
 
     try {
@@ -85,7 +86,7 @@ export class ClienteController {
     }
   }
 
-  async resetPass(req: Request, res: Response) {
+  static async resetPass(req: Request, res: Response) {
     const { id, token } = req.params;
     const { password, confirmPassword } = req.body;
 
@@ -100,7 +101,7 @@ export class ClienteController {
     }
   }
 
-  async findClientByEmail(req: Request, res: Response) {
+  static async findClientByEmail(req: Request, res: Response) {
     try {
       const client = await findByEmail(req.params.email);
 
@@ -110,7 +111,7 @@ export class ClienteController {
       return res.status(400).json(error);
     }
   }
-  async update(req: Request, res: Response) {
+  static async update(req: Request, res: Response) {
     const { name, email, phone, cep, storeId }: ClientDTO = req.body;
     try {
       const result = await updateClient(name, email, phone, cep, storeId);
@@ -122,7 +123,7 @@ export class ClienteController {
     }
   }
 
-  async updatePass(req: Request, res: Response) {
+  static async updatePass(req: Request, res: Response) {
     const { email, oldPassword, newPassword } = req.body;
     try {
       const result = await updatePassword(email, oldPassword, newPassword);
@@ -133,7 +134,7 @@ export class ClienteController {
     }
   }
 
-  async updatePoints(req: Request, res: Response) {
+  static async updatePoints(req: Request, res: Response) {
     const { id, points } = req.body;
 
     try {
