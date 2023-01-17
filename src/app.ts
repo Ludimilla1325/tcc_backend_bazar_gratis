@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const port = 3987;
+const port = 3988;
 import cors from "cors";
 import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
@@ -12,6 +12,8 @@ import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
 import points_solicitation from "./Routes/PointsSolicitation.routes";
 import category_routes from "./Routes/Categories.routes";
+import dashboard_routes from "./Routes/Dashboard.routes";
+import "./Utils/patch";
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
@@ -37,7 +39,7 @@ app.use("/store", store_routes);
 app.use("/cooperator", cooperator_routes);
 app.use("/pointsSolicitation", points_solicitation);
 app.use("/category", category_routes);
-
+app.use("/dashboard", dashboard_routes);
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });

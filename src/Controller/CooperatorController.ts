@@ -22,8 +22,6 @@ export class CooperatorController {
 
       return res.status(201).json(exec);
     } catch (error) {
-      console.log(error);
-
       return res.status(400).json(error);
     }
   }
@@ -35,8 +33,6 @@ export class CooperatorController {
 
       return res.status(201).json(exec);
     } catch (error) {
-      console.log(error);
-
       return res.status(400).json(error);
     }
   }
@@ -45,7 +41,6 @@ export class CooperatorController {
     try {
       const { email, password } = req.body;
       const exec = await login(email, password);
-      console.log(exec);
       return res.status(200).json(exec);
     } catch (error) {
       return res.status(401).json(error);
@@ -91,7 +86,6 @@ export class CooperatorController {
       const result = await updatePassword(email, oldPassword, newPassword);
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

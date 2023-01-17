@@ -34,7 +34,6 @@ export class ClienteController {
 
       return res.status(201).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -44,11 +43,8 @@ export class ClienteController {
     try {
       const result = await login(email, password);
 
-      console.log(result);
-
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -63,7 +59,6 @@ export class ClienteController {
         return res.status(400).json(result);
       }
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -73,7 +68,6 @@ export class ClienteController {
 
     try {
       const result = await verifyResetPass(id, token);
-      console.log(result.data);
 
       if (result.sucess && result.data) {
         res.render("index", {
@@ -81,7 +75,6 @@ export class ClienteController {
         });
       }
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -96,7 +89,6 @@ export class ClienteController {
         return res.status(200).json(result.message);
       }
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -107,7 +99,6 @@ export class ClienteController {
 
       return res.status(200).json(client);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -118,7 +109,6 @@ export class ClienteController {
 
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -129,7 +119,6 @@ export class ClienteController {
       const result = await updatePassword(email, oldPassword, newPassword);
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

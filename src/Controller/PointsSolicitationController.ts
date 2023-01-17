@@ -28,8 +28,6 @@ export class PointsSolicitationController {
 
       return res.status(200).json(result);
     } catch (error) {
-      console.log("error", error);
-
       return res.status(400).json(error);
     }
   }
@@ -47,10 +45,6 @@ export class PointsSolicitationController {
 
   static async getAll(req: Request, res: Response) {
     try {
-      console.log({
-        clientId: Number(req.query.clientId),
-        loja_id: Number(req.query.loja_id),
-      });
       const result = await getAll({
         clientId: Number(req.query.clientId),
         loja_id: Number(req.query.loja_id),

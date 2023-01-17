@@ -10,7 +10,6 @@ export class AppointmentController {
 
       return res.status(200).json(lista);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -22,7 +21,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -34,7 +32,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -46,7 +43,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

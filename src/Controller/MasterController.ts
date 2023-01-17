@@ -14,7 +14,6 @@ export class MasterController {
 
       return res.status(201).json(exec);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

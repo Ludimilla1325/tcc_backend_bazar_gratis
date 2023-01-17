@@ -10,7 +10,6 @@ export class PurchaseController {
 
       return res.status(201).json(useCase);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -22,7 +21,6 @@ export class PurchaseController {
 
       return res.status(200).json(list);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -32,7 +30,6 @@ export class PurchaseController {
     try {
       return res.status(200).json(await delet(purchase_id, Number(req.userId)));
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

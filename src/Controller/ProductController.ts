@@ -16,7 +16,6 @@ export class ProdutoController {
 
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -30,7 +29,6 @@ export class ProdutoController {
       const result = await product.execute(storeId, productId);
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -49,7 +47,6 @@ export class ProdutoController {
       );
       return res.status(200).json(product);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -71,7 +68,6 @@ export class ProdutoController {
       );
       return res.status(200).json(product);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -84,7 +80,6 @@ export class ProdutoController {
       const product = await deleteProduct(storeId, productId);
       return res.status(200).json(product);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
