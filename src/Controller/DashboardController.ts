@@ -8,6 +8,9 @@ import {
   purchaseDeliveredThirtyDaysByStore,
   totalNumOfClientsByStore,
 } from "../Modules/dashboard/useCases/admin";
+import { monthlyPurchaseByStore } from "../Modules/dashboard/useCases/admin/monthlyPurchase";
+import { pointsSolicitationByStorePercentage } from "../Modules/dashboard/useCases/admin/pointsSolicitation";
+import { purchaseDeliveredByStore } from "../Modules/dashboard/useCases/admin/purchaseDeliveredByStore";
 import {
   pointsSolicitationLastThirtyDays,
   pointsSolicitationLastThirtyDaysApproved,
@@ -17,9 +20,79 @@ import {
   purchaseDeliveredThirtyDays,
   totalNumOfClients,
 } from "../Modules/dashboard/useCases/master";
+import { monthlyPurchase } from "../Modules/dashboard/useCases/master/monthlyPurchase";
+import { pointsSolicitationPercentage } from "../Modules/dashboard/useCases/master/pointsSolicitation";
+import { purchaseDelivered } from "../Modules/dashboard/useCases/master/purchaseDeliveredByStore";
 import { topSellingProducts } from "../Modules/dashboard/useCases/topSellingProducts";
 
 export class DashboardController {
+  static async pointsSolicitationByStorePercentage(
+    req: Request,
+    res: Response
+  ) {
+    const storeId = Number(req.params.storeId);
+    try {
+      const result = await pointsSolicitationByStorePercentage(storeId);
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async purchaseDeliveredByStore(req: Request, res: Response) {
+    const storeId = Number(req.params.storeId);
+    try {
+      const result = await purchaseDeliveredByStore(+storeId);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async monthlyPurchaseByStore(req: Request, res: Response) {
+    const storeId = Number(req.params.storeId);
+    try {
+      const result = await monthlyPurchaseByStore(+storeId);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  /////////////////
+
+  static async pointsSolicitationPercentage(req: Request, res: Response) {
+    try {
+      const result = await pointsSolicitationPercentage();
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async purchaseDelivered(req: Request, res: Response) {
+    const storeId = Number(req.params.storeId);
+    try {
+      const result = await purchaseDelivered();
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async monthlyPurchase(req: Request, res: Response) {
+    try {
+      const result = await monthlyPurchase();
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  ////////////////////
+
   static async pointsSolicitationLastThirtyDaysApprovedByStore(
     req: Request,
     res: Response

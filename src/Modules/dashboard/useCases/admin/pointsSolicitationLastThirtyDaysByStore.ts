@@ -3,7 +3,7 @@ import { prisma } from "../../../../Prisma/client";
 
 export async function pointsSolicitationLastThirtyDaysByStore(storeId: number) {
   const pointsSolicitation = await prisma.$queryRaw(
-    Prisma.sql`SELECT * FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}`
+    Prisma.sql`SELECT sum(quantity) FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}`
   );
   if (pointsSolicitation) {
     return {

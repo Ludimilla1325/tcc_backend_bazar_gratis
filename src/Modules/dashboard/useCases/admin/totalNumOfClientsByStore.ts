@@ -10,7 +10,7 @@ export async function totalNumOfClientsByStore(storeId: number) {
   if (numberOfClients) {
     return {
       sucess: true,
-      data: numberOfClients[0],
+      data: numberOfClients[0].qtdClient,
       message: null,
     };
   } else {
