@@ -9,7 +9,7 @@ router.post(`/`, authMiddleware, CooperatorController.create);
 
 router.post(`/login`, CooperatorController.login);
 
-router.patch(`/`, authMiddleware, CooperatorController.update);
+router.put(`/`, authMiddleware, CooperatorController.update);
 
 router.put(`/pass`, authMiddleware, CooperatorController.updatePass);
 

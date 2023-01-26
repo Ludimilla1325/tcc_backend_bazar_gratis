@@ -4,33 +4,11 @@ import { checkMasterById } from "../../master/useCases";
 import { UpdateCooperatorDTO } from "../dtos/UpdateCooperatorDTO";
 import { getById } from "./getById";
 
-export async function update({
-  email,
-  password,
-  name,
-  active,
-  cpf,
-  admin,
-  storeId,
-  id,
-}: UpdateCooperatorDTO) {
-  // Verificar se o usuário já existe
-
-  // const master = await checkMasterById(+id);
-  // const admin_ = await getById(+id);
-  // if (!master && !admin_ && id != +id) {
-  //   return {
-  //     sucess: false,
-  //     data: null,
-  //     message: "Operação não permitida!",
-  //   };
-  // }
-
+export async function update({ name, active, admin, id }: UpdateCooperatorDTO) {
   const data = {
     name,
     active,
     admin,
-    storeId: +storeId,
   };
   const cooperator = await prisma.cooperator.update({
     where: {
