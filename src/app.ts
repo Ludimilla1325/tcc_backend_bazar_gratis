@@ -1,7 +1,7 @@
 import express from "express";
 import { Router } from "express";
 const app = express();
-const port = 3002;
+const port = 3987;
 import cors from "cors";
 import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
