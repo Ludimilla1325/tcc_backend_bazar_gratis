@@ -97,4 +97,10 @@ router.delete(
   controller.deleteProductById
 );
 
+
+
+
+
+
+
 export default router;

@@ -1,4 +1,5 @@
 import express from "express";
+import { Router } from "express";
 const app = express();
 const port = 3002;
 import cors from "cors";
@@ -11,6 +12,7 @@ import master_routes from "./Routes/Master.routes";
 import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
 import points_solicitation from "./Routes/Points_solicitation.routes";
+import { images_path } from "./Utils/paths";
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -32,7 +34,11 @@ app.use("/master", master_routes);
 app.use("/store", store_routes);
 app.use("/cooperator", cooperator_routes);
 app.use("/pointsSolicitation", points_solicitation);
-
+app.use(
+  Router().get("/photo/:file", function (req, res) {
+    res.sendFile(images_path + "/" + req.params.file);
+  })
+);
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
