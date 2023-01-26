@@ -10,17 +10,25 @@ export async function updateProduct(
   quantity: number,
   storeId: number
 ) {
+  const data = photo? {
+    name,
+    description,
+    photo,
+    categoryId:Number(categoryId),
+    value:Number(value),
+    quantity:Number(quantity),
+    storeId:Number(storeId),
+  }:{
+    name,
+    description,
+    categoryId:Number(categoryId),
+    value:Number(value),
+    quantity:Number(quantity),
+    storeId:Number(storeId),
+  }
   const query = await prisma.product.update({
     where: { id: productId },
-    data: {
-      name,
-      description,
-      photo,
-      categoryId,
-      value,
-      quantity,
-      storeId,
-    },
+    data: data,
   });
 
   if (query) {

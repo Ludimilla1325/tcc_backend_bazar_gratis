@@ -1,0 +1,1 @@
+export const images_path = "/home/ricardinho/tcc-2/back/tcc_backend_bazar_gratis/Images";

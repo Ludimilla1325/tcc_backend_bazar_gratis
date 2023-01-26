@@ -1,6 +1,14 @@
 import { prisma } from "../../../Prisma/client";
-
+import fs from "fs";
+import { images_path } from "../../../Utils/paths";
 export async function deleteProduct(storeId: number, productId: number) {
+
+  const product = await prisma.product.findUnique({
+    where: {
+      id: productId,
+    
+    },
+  });
   const query = await prisma.product.deleteMany({
     where: {
       id: productId,
@@ -8,6 +16,8 @@ export async function deleteProduct(storeId: number, productId: number) {
     },
   });
   if (query) {
+    fs.unlink(images_path+"/"+product?.photo,()=>{});
+
     return {
       sucess: true,
       data: null,

@@ -14,10 +14,10 @@ export async function createProduct(
       name,
       description,
       photo,
-      categoryId,
-      value,
-      quantity,
-      storeId,
+      categoryId:Number(categoryId),
+      value:Number(value),
+      quantity:Number(quantity),
+      storeId:Number(storeId),
     },
   });
 
