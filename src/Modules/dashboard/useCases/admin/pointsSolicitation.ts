@@ -7,19 +7,19 @@ export async function pointsSolicitationByStorePercentage(storeId: number) {
   }
   try {
     const approved: Array<qtd> = await prisma.$queryRaw(
-      Prisma.sql`SELECT sum(quantity) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId} and status = 'APROVADO'`
+      Prisma.sql`SELECT COALESCE(sum(quantity), 0 ) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId} and status = 'APROVADO'`
     );
 
     const geral: Array<qtd> = await prisma.$queryRaw(
-      Prisma.sql`SELECT sum(quantity) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}`
+      Prisma.sql`SELECT COALESCE(sum(quantity), 0 ) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}`
     );
 
     const emAndamento: Array<qtd> = await prisma.$queryRaw(
-      Prisma.sql`SELECT sum(quantity) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}  and status = 'EM ANDAMENTO'`
+      Prisma.sql`SELECT COALESCE(sum(quantity), 0 ) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId}  and status = 'EM ANDAMENTO'`
     );
 
     const denied: Array<qtd> = await prisma.$queryRaw(
-      Prisma.sql`SELECT sum(quantity) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId} and status = 'NEGADO'`
+      Prisma.sql`SELECT COALESCE(sum(quantity), 0 ) as qtd FROM Points_solicitation ps inner join Client c on ps.clientId = c.id where DATE(request_date) >= DATE(NOW()) - INTERVAL 30 DAY and c.storeId = ${storeId} and status = 'NEGADO'`
     );
     const percentagedOfApproved = (+approved[0].qtd * 100) / +geral[0].qtd;
 
