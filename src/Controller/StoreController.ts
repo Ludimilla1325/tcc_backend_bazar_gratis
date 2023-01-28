@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { create, update, getById, getAll } from "../modules/store/useCases";
-import { CreateStoreDTO, UpdateStoreDTO } from "../modules/store/dtos";
+import { create, update, getById, getAll } from "../Modules/store/useCases";
+import { CreateStoreDTO, UpdateStoreDTO } from "../Modules/store/dtos";
+
 export class StoreController {
   static async create(req: Request, res: Response) {
     try {
@@ -10,7 +11,6 @@ export class StoreController {
 
       return res.status(201).json(exec);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -29,18 +29,9 @@ export class StoreController {
 
   static async get(req: Request, res: Response) {
     try {
-      console.log(req.role)
-      if (req.role == "master") {
-        const exec = await getAll();
+      const exec = await getAll();
 
-        return res.status(200).json(exec);
-      } else {
-        return res.status(200).json({
-          sucess: false,
-          data: null,
-          message: "Voce nao possui permissao para acessar esta rota",
-        });
-      }
+      return res.status(200).json(exec);
     } catch (error) {
       return res.status(400).json(error);
     }

@@ -1,18 +1,17 @@
 import { Request, Router } from "express";
-import { body, query } from "express-validator";
+import { body } from "express-validator";
 
-import { ProdutoController } from "../Controller/ProductController";
 import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
-import { validator } from "../Middlewares/validator";
 import multer from "multer";
-const controller = new ProdutoController();
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 //Alterar para a pasta em que manteremos os arquivos
-import {images_path} from "../Utils/paths";
+import { images_path } from "../Utils/paths";
 import path from "path";
 
 //PATH REFERENTE AO SERVIDOR Depois
 
+import { validator } from "../Middlewares/Validator";
+import { ProdutoController } from "../Controller/ProductController";
 
 export function withMessage(param: string) {
   return `Necessario informar parametro ${param}`;
@@ -42,19 +41,17 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, images_path);
   },
-  filename: function (req:Request, file:any, cb:any) {
-    const newFileName =
-    uuid() + path.extname(file.originalname.toLowerCase());
+  filename: function (req: Request, file: any, cb: any) {
+    const newFileName = uuid() + path.extname(file.originalname.toLowerCase());
     req.body.photo = newFileName;
     cb(null, newFileName);
   },
 });
 
-
 const upload = multer({
   storage,
-  fileFilter: (req:Request, file:any, callback:any) => {
-    if(file == undefined){
+  fileFilter: (req: Request, file: any, callback: any) => {
+    if (file == undefined) {
       callback(null, true);
     }
     var ext = path.extname(file.originalname.toLowerCase());
@@ -68,16 +65,19 @@ const upload = multer({
   },
 });
 
-
 const router = Router();
-router.get(`/:storeId`, authMiddleware, controller.getAllProducts);
-router.get(`/:storeId/:productId`, authMiddleware, controller.getProductById);
+router.get(`/:storeId`, authMiddleware, ProdutoController.getAllProducts);
+router.get(
+  `/:storeId/:productId`,
+  authMiddleware,
+  ProdutoController.getProductById
+);
 router.put(
   `/:storeId/:productId`,
   upload.single("file"),
   authMiddleware,
   roles(["admin", "master"]),
-  controller.updateProduct
+  ProdutoController.updateProduct
 );
 router.post(
   `/:storeId`,
@@ -86,21 +86,14 @@ router.post(
   upload.single("file"),
   ...product,
   validator,
-  controller.createProduct
+  ProdutoController.createProduct
 );
-
 
 router.delete(
   `/:storeId/:productId`,
   authMiddleware,
   roles(["admin", "master"]),
-  controller.deleteProductById
+  ProdutoController.deleteProductById
 );
-
-
-
-
-
-
 
 export default router;

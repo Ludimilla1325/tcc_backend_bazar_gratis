@@ -1,7 +1,6 @@
 import { Router } from "express";
 
 import { AppointmentController } from "../Controller/AppointmentController";
-//import { authMiddleware } from "../Middlewares/authMiddleware";
 
 const router = Router();
 router.get(`/:loja_id`, AppointmentController.list);

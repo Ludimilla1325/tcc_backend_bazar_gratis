@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const status = "<%- JSON.stringify(status) %>";
+
+      if (JSON.parse(status) == "verified") {
+        if (confirm("Deseja logar?")) {
+          window.location.href = "http://localhost:3987/bazar-gratis/login";
+        }
+      }
+    </script>
+    <style>
+      input[type="password"] {
+        width: 70%;
+        /* padding: 12px 20px;
+        margin: 8px 0; */
+        box-sizing: border-box;
+        text-align: center;
+        margin: auto;
+
+        display: block;
+      }
+      input[type="submit"] {
+        background-color: #c9407d;
+        border: none;
+        color: white;
+        /* padding: 16px 32px; */
+        /* margin: 4px 2px; */
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        margin: auto;
+        display: block;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <form action="" method="post">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+      /><br />
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmpassword"
+        placeholder="confirm-password"
+      /><br />
+      <input type="submit" value="submit" />
+    </form> -->
+    <h2>Alterar Senha</h2>
+    <form>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Senha"
+      /><br />
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmpassword"
+        placeholder="Confirmar senha"
+      /><br />
+      <input type="submit" value="Alterar senha" />
+    </form>
+  </body>
+</html>

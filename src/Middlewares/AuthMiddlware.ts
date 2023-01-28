@@ -35,7 +35,6 @@ export function authMiddleware(
   const { authorization } = req.headers;
 
   if (!authorization) {
-    console.log("Errado");
     return res.sendStatus(401);
   }
 
@@ -43,15 +42,12 @@ export function authMiddleware(
 
   try {
     const data = jwt.verify(token, secret);
-    //console.log(data);
-
     const { id, role } = data as TokenPayLoad;
     req.userId = id;
     req.role = role;
 
     return next();
   } catch (err) {
-    console.log(err);
     return res.sendStatus(401);
   }
 }

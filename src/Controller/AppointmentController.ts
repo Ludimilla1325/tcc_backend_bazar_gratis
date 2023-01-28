@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { CreateAppointmentDTO } from "../modules/appointment/dtos/CreateAppointmentDTO";
-import { getAll, create, del, update } from "../modules/appointment/useCases";
+import { CreateAppointmentDTO } from "../Modules/appointment/dtos/CreateAppointmentDTO";
+import { getAll, create, del, update } from "../Modules/appointment/useCases";
+
 export class AppointmentController {
   static async list(req: Request, res: Response) {
     const loja_id = Number(req.params.loja_id);
@@ -9,7 +10,6 @@ export class AppointmentController {
 
       return res.status(200).json(lista);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -21,7 +21,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -33,7 +32,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
@@ -45,7 +43,6 @@ export class AppointmentController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }

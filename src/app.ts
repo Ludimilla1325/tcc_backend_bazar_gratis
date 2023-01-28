@@ -7,11 +7,17 @@ import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
 import appointment_routes from "./Routes/Appointment.routes";
 import appointmentClient_routes from "./Routes/AppointmentClient.routes";
-import purchase_routes from "./Routes/Purchase.Routes";
+import purchase_routes from "./Routes/Purchase.routes";
 import master_routes from "./Routes/Master.routes";
 import store_routes from "./Routes/Store.routes";
 import cooperator_routes from "./Routes/Cooperator.routes";
-import points_solicitation from "./Routes/Points_solicitation.routes";
+import points_solicitation from "./Routes/PointsSolicitation.routes";
+import category_routes from "./Routes/Categories.routes";
+import dashboard_routes from "./Routes/Dashboard.routes";
+import "./Utils/patch";
+
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 import { images_path } from "./Utils/paths";
 app.use(cors());
 app.use(express.json());
@@ -39,6 +45,8 @@ app.use(
     res.sendFile(images_path + "/" + req.params.file);
   })
 );
+app.use("/category", category_routes);
+app.use("/dashboard", dashboard_routes);
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
