@@ -74,6 +74,13 @@ router.get(
   validator,
   ClienteController.findClientByEmail
 );
+router.get(
+  `/refresh/client`,
+  authMiddleware,
+
+  
+  ClienteController.findClientById
+);
 router.put(
   `/`,
   authMiddleware,

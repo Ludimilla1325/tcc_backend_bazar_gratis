@@ -9,6 +9,7 @@ import { updatePoints } from "../Modules/client/useCases/handlePoints";
 import { sendLinkToResetPass } from "../Modules/client/useCases/forgotPassUseCase";
 import { verifyResetPass } from "../Modules/client/useCases/verifyResetPassUseCase";
 import { resetPass } from "../Modules/client/useCases/resetPassUseCase copy";
+import { findById } from "../Modules/client/useCases/findById";
 
 export class ClienteController {
   static async criar(req: Request, res: Response) {
@@ -96,6 +97,16 @@ export class ClienteController {
   static async findClientByEmail(req: Request, res: Response) {
     try {
       const client = await findByEmail(req.params.email);
+
+      return res.status(200).json(client);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async findClientById(req: Request, res: Response) {
+    try {
+      const client = await findById(req.userId);
 
       return res.status(200).json(client);
     } catch (error) {
