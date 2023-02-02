@@ -1,7 +1,7 @@
 import express from "express";
 import { Router } from "express";
 const app = express();
-const port = 3987;
+
 import cors from "cors";
 import client_routes from "./Routes/Client.routes";
 import product_routes from "./Routes/Product.routes";
@@ -19,6 +19,7 @@ import "./Utils/patch";
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 import { images_path } from "./Utils/paths";
+import { port } from "./Utils/port";
 app.use(cors());
 app.use(express.json());
 app.use(

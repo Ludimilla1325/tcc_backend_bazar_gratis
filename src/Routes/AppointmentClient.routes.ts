@@ -14,4 +14,5 @@ router.post(`/`, authMiddleware,AppointmentClientController.create);
 router.put(`/`, authMiddleware,AppointmentClientController.update);
 router.patch(`/:agendamento_cliente_id`, AppointmentClientController.confirmDelivery);
 router.delete(`/:agendamento_cliente_id`, authMiddleware,AppointmentClientController.delete);
+router.get(`/cancelReservations`, AppointmentClientController.cancelReservations);
 export default router;

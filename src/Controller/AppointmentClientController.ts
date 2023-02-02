@@ -5,6 +5,7 @@ import {
   confirmDelivery,
   del,
   update,
+  cancelReservations,
 } from "../Modules/appointment_client/useCases";
 import { ICreateAppointmentClient } from "../Modules/appointment_client/dtos/CreateAgendamentoClienteDTO";
 
@@ -62,5 +63,18 @@ export class AppointmentClientController {
     } catch (error) {
       return res.status(400).json(error);
     }
+  }
+
+  static async cancelReservations(req:Request,res:Response){
+
+    
+    try {
+      const list = await cancelReservations();
+
+      return res.status(200).json(list);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+    
   }
 }
