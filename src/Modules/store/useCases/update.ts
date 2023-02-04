@@ -6,33 +6,21 @@ export async function update(
   { name, localization, maxPoints, id }: UpdateStoreDTO,
   masterId: number
 ) {
-  // Verificar se o usuário já existe
-
-  const master = await checkMasterById(masterId);
-
-  if (master) {
-    const store = await prisma.store.update({
-      where: {
-        id,
-      },
-      data: {
-        name,
-        localization,
-        maxPoints: +maxPoints,
-        creation_date: new Date(),
-      },
-    });
-
-    return {
-      sucess: true,
-      data: store,
-      message: null,
-    };
-  }
+  const store = await prisma.store.update({
+    where: {
+      id: +id,
+    },
+    data: {
+      name,
+      localization,
+      maxPoints: +maxPoints,
+      creation_date: new Date(),
+    },
+  });
 
   return {
-    sucess: false,
-    data: null,
-    message: "Não foi possível atualizar a loja " + name,
+    sucess: true,
+    data: store,
+    message: null,
   };
 }

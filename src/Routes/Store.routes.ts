@@ -6,7 +6,7 @@ import { authMiddleware } from "../Middlewares/AuthMiddlware";
 const router = Router();
 router.get(`/`, StoreController.get);
 router.post(`/`, authMiddleware, StoreController.create);
-router.patch(`/`, authMiddleware, StoreController.update);
+router.put(`/:id`, authMiddleware, StoreController.update);
 router.get(`/:id`, authMiddleware, StoreController.getById);
 
 export default router;

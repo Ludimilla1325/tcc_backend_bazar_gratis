@@ -19,7 +19,7 @@ export class StoreController {
     try {
       const data: UpdateStoreDTO = req.body;
       const masterId = req.userId;
-      const exec = await update(data, masterId);
+      const exec = await update(data, +masterId);
 
       return res.status(201).json(exec);
     } catch (error) {
