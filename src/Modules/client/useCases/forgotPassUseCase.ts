@@ -28,7 +28,7 @@ export async function sendLinkToResetPass(email: string) {
       { expiresIn: "5m" }
     );
 
-    const link = `http://localhost:3987/client/reset-password/${userAlreadyExists.id}/${token}`;
+    const link = `http://localhost:3988/client/reset-password/${userAlreadyExists.id}/${token}`;
 
     const transporter = await nodemailer.createTransport({
       host: "smtp.gmail.com",

@@ -6,12 +6,14 @@ export async function create({
   appointmentId,
   clientId,
   delivered,
+  storeId,
 }: ICreateAppointmentClient) {
   const query = await prisma.client_Appointment.create({
     data: {
       appointmentId: Number(appointmentId),
       clientId: Number(clientId),
       delivered: false,
+      storeId: Number(storeId),
     },
   });
 
