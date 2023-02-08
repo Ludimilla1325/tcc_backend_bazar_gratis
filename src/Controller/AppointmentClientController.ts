@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import {
   create,
-  getAll,
+  getAllByClient,
+  getAllByStore,
   confirmDelivery,
   del,
   update,
@@ -32,10 +33,23 @@ export class AppointmentClientController {
     }
   }
 
-  static async getAll(req: Request, res: Response) {
+  static async getAllByClient(req: Request, res: Response) {
     const clientId = Number(req.userId);
     try {
-      const list = await getAll(clientId);
+      
+      const list = await getAllByClient(clientId);
+
+      return res.status(200).json(list);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async getAllByStore(req: Request, res: Response) {
+    const storeId = Number(req.params.store_id);
+    try {
+     
+      const list = await getAllByStore(storeId);
 
       return res.status(200).json(list);
     } catch (error) {
