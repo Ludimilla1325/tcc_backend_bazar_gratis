@@ -26,7 +26,6 @@ where Client_Appointment.clientId = ${clientId}
   };
 }
 
-
 export async function getAllByStore(store_id: number) {
   const queryConstruct = ``;
 
@@ -59,7 +58,7 @@ where Client.storeId = ${store_id}
 
 ;
   
-  `)
+  `);
   return {
     sucess: true,
     data: query,

@@ -78,8 +78,13 @@ router.get(
   `/refresh/client`,
   authMiddleware,
 
-  
   ClienteController.findClientById
+);
+router.get(
+  `/:storeId`,
+  authMiddleware,
+
+  ClienteController.findClientByStoreId
 );
 router.put(
   `/`,

@@ -18,7 +18,7 @@ export class getAllProducts {
     } else {
       return {
         sucess: false,
-        data: null,
+        data: [],
         message: "Problema em selecionar todos os produtos",
       };
     }

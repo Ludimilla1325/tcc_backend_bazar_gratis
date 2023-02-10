@@ -10,6 +10,7 @@ import { sendLinkToResetPass } from "../Modules/client/useCases/forgotPassUseCas
 import { verifyResetPass } from "../Modules/client/useCases/verifyResetPassUseCase";
 import { resetPass } from "../Modules/client/useCases/resetPassUseCase copy";
 import { findById } from "../Modules/client/useCases/findById";
+import { findByStoreId } from "../Modules/client/useCases/findByIStored";
 
 export class ClienteController {
   static async criar(req: Request, res: Response) {
@@ -113,6 +114,18 @@ export class ClienteController {
       return res.status(400).json(error);
     }
   }
+
+  static async findClientByStoreId(req: Request, res: Response) {
+    const { storeId } = req.params;
+    try {
+      const client = await findByStoreId(+storeId);
+
+      return res.status(200).json(client);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
   static async update(req: Request, res: Response) {
     const { name, email, phone, cep, storeId }: ClientDTO = req.body;
     try {
