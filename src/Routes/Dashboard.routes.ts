@@ -50,4 +50,9 @@ router.get(`/total-number-client/`, DashboardController.totalNumOfClients);
 
 router.get(`/top-selling-products/`, DashboardController.topSellingProducts);
 
+router.get(
+  `/top-selling-products/:storeId`,
+  DashboardController.topSellingProductsByStore
+);
+
 export default router;

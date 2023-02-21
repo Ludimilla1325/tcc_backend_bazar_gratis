@@ -11,6 +11,7 @@ import {
 import { monthlyPurchaseByStore } from "../Modules/dashboard/useCases/admin/monthlyPurchase";
 import { pointsSolicitationByStorePercentage } from "../Modules/dashboard/useCases/admin/pointsSolicitation";
 import { purchaseDeliveredByStore } from "../Modules/dashboard/useCases/admin/purchaseDeliveredByStore";
+import { topSellingProductsByStore } from "../Modules/dashboard/useCases/admin/topSellingProductsByStore";
 import {
   pointsSolicitationLastThirtyDays,
   pointsSolicitationLastThirtyDaysApproved,
@@ -285,6 +286,17 @@ export class DashboardController {
   static async topSellingProducts(req: Request, res: Response) {
     try {
       const result = await topSellingProducts();
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async topSellingProductsByStore(req: Request, res: Response) {
+    const storeId = Number(req.params.storeId);
+    try {
+      const result = await topSellingProductsByStore(storeId);
 
       return res.status(200).json(result);
     } catch (error) {
