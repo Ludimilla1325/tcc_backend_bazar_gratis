@@ -5,3 +5,4 @@ export * from "./purchaseDeliveredNinetyDays";
 export * from "./purchaseDeliveredSevenDays";
 export * from "./purchaseDeliveredThirtyDays";
 export * from "./totalNumOfClients";
+export * from "./pointsSolicitationLastNinetyDaysPerStore";

@@ -19,13 +19,38 @@ import {
   purchaseDeliveredSevenDays,
   purchaseDeliveredThirtyDays,
   totalNumOfClients,
+  pointsSolicitationLastNinetyDaysPerStore,
 } from "../Modules/dashboard/useCases/master";
 import { monthlyPurchase } from "../Modules/dashboard/useCases/master/monthlyPurchase";
 import { pointsSolicitationPercentage } from "../Modules/dashboard/useCases/master/pointsSolicitation";
 import { purchaseDelivered } from "../Modules/dashboard/useCases/master/purchaseDeliveredByStore";
+import { PurchaseLastNinetyDaysPerStore } from "../Modules/dashboard/useCases/master/PurchaseLastNinetyDaysPerStore copy";
 import { topSellingProducts } from "../Modules/dashboard/useCases/topSellingProducts";
 
 export class DashboardController {
+  ////]
+  static async pointsSolicitationLastNinetyDaysPerStore(
+    req: Request,
+    res: Response
+  ) {
+    try {
+      const result = await pointsSolicitationLastNinetyDaysPerStore();
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  static async PurchaseLastNinetyDaysPerStore(req: Request, res: Response) {
+    try {
+      const result = await PurchaseLastNinetyDaysPerStore();
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  ////
   static async pointsSolicitationByStorePercentage(
     req: Request,
     res: Response
