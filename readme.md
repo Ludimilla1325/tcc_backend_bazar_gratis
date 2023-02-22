@@ -6,7 +6,7 @@
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Diagrama</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-execução">Execução</a>
+  <a href="#-execução">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
 
@@ -40,3 +40,4 @@ Para executar utilize o comando <strong>npm start</strong>, o programa será ini
 A pasta backup contêm um back up de dados para que o sistema seja alimentado e funcione da forma esperada. 
 Também é preciso criar na raiz do projeto um arquivo chamado [.env](https://www.npmjs.com/package/dotenv) com as configurações de seu banco de dados com as varaveis a seguinte variavel:
 DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/DATABASE
+Por fim é necessário alterar a variavél <strong>images_path</strong> no arquivo <strong>./src/Utils/paths.ts</strong> para o caminho de uma pasta que você deseja utilizar para que a aplicação possa armazenar referentes a uma funcionalidade da aplicação. 
