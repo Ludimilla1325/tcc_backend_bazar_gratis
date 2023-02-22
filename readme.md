@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Bazar Grátis" title="Bazar Grátis" src="./README/bazargratis.png" width="220px" />
+  <img alt="Bazar Grátis" title="Bazar Grátis" src="./Readme/bazargratis.png" width="220px" />
 </h1>
 
 <p align="center">
