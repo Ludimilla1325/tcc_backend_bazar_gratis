@@ -4,8 +4,6 @@ import { getAll } from "../../cooperator/useCases";
 import { getAllProducts } from "../../product/useCases";
 
 export async function deleteById(id: number) {
-  // Verificar se o usuário já existe
-
   const haveCooperator = await getAll(id);
 
   const list = new getAllProducts();

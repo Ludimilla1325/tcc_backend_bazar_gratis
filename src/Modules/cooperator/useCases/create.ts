@@ -18,7 +18,6 @@ export async function create(
     throw "Operação não permitida!";
   }
 
-  // Verificar se o usuário já existe
   const userAlreadyExists = await prisma.cooperator.findFirst({
     where: {
       email,

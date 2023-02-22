@@ -1,28 +1,27 @@
 import { prisma } from "../../../Prisma/client";
-import {CreateMasterDTO} from "../dtos/CreateMasterDTO";
-import {hash} from "../../../Utils/hashUtils";
+import { CreateMasterDTO } from "../dtos/CreateMasterDTO";
+import { hash } from "../../../Utils/hashUtils";
 
-export async function create({email,password, name}:CreateMasterDTO) {
-  // Verificar se o usuário já existe
+export async function create({ email, password, name }: CreateMasterDTO) {
   const userAlreadyExists = await prisma.client.findFirst({
     where: {
-     email,
+      email,
     },
   });
 
-  if(userAlreadyExists){
+  if (userAlreadyExists) {
     return {
       sucess: false,
       data: null,
       message: "Já existe um usuário cadastrado com este email!",
     };
   }
-  password=  hash(password);
+  password = hash(password);
   const master = await prisma.master.create({
     data: {
       name,
       email,
-     password,
+      password,
     },
   });
 

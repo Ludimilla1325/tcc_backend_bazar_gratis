@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import { secret } from "../../../Utils/tokenSecret";
 
 export async function login(email: string, password: string) {
-  // Verificar se o usuário já existe
   const userAlreadyExists = await prisma.client.findFirst({
     where: {
       email: email,
@@ -29,7 +28,7 @@ export async function login(email: string, password: string) {
     return {
       sucess: true,
       data: {
-        user:userAlreadyExists,
+        user: userAlreadyExists,
         token,
       },
       message: null,

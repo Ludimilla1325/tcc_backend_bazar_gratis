@@ -4,11 +4,8 @@ import { body } from "express-validator";
 import { authMiddleware, roles } from "../Middlewares/AuthMiddlware";
 import multer from "multer";
 import { v4 as uuid } from "uuid";
-//Alterar para a pasta em que manteremos os arquivos
 import { images_path } from "../Utils/paths";
 import path from "path";
-
-//PATH REFERENTE AO SERVIDOR Depois
 
 import { validator } from "../Middlewares/Validator";
 import { ProdutoController } from "../Controller/ProductController";

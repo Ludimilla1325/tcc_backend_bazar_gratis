@@ -2,8 +2,6 @@ import { Router } from "express";
 
 import { CooperatorController } from "../Controller/CooperatorController";
 import { authMiddleware } from "../Middlewares/AuthMiddlware";
-//import { authMiddleware } from "../Middlewares/authMiddleware";
-
 const router = Router();
 router.post(`/`, authMiddleware, CooperatorController.create);
 

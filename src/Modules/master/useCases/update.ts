@@ -5,7 +5,6 @@ import { secret } from "../../../Utils/tokenSecret";
 import jwt from "jsonwebtoken";
 
 export async function update({ email, password, name, id }: UpdateMasterDTO) {
-  //Só um crud para alterar senha e dados pessoais
   const data = password
     ? {
         email,
@@ -16,8 +15,6 @@ export async function update({ email, password, name, id }: UpdateMasterDTO) {
         email,
         name,
       };
-
-  // Update
   const updateUser = await prisma.master.update({
     where: {
       id,

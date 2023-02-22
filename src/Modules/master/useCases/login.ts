@@ -5,7 +5,6 @@ import { secret } from "../../../Utils/tokenSecret";
 import jwt from "jsonwebtoken";
 
 export async function login({ email, password }: LoginMasterDto) {
-  // Buscar Usuário
   const userAlreadyExists = await prisma.master.findFirst({
     where: {
       email: email,
@@ -21,7 +20,7 @@ export async function login({ email, password }: LoginMasterDto) {
   }
 
   const validatePass = await compare(password, userAlreadyExists.password);
-  
+
   if (validatePass) {
     const token = jwt.sign(
       { id: userAlreadyExists.id, role: "master" },

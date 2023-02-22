@@ -17,8 +17,6 @@ export async function create({
     },
   });
 
-  //Cadastrar pedidos
-
   return {
     sucess: true,
     data: query,

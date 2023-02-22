@@ -48,14 +48,6 @@ export async function PurchaseLastNinetyDaysPerStore() {
   pointsSolicitation.map((solicitation) => {
     if (!dataAll.find((e) => e.label === solicitation.storeName)) {
       const variaveis: any[] = [];
-      // label.map((month) => {
-      //   if (month != solicitation.mes) {
-      //     variaveis.push(0);
-      //   } else {
-      //     variaveis.push(Number(solicitation.qtd));
-      //   }
-      // });
-
       const color = makeRandomColor();
 
       dataAll.push({
@@ -71,37 +63,6 @@ export async function PurchaseLastNinetyDaysPerStore() {
       dataAll[index].data = [...dataAll[index].data, Number(solicitation.qtd)];
     }
   });
-
-  // pointsSolicitation.map((solicitation) => {
-  //   if (!dataAll.find((e) => e.label === solicitation.storeName)) {
-  //     const variaveis: any[] = [];
-  //     label.map((month) => {
-  //       if (month != solicitation.mes) {
-  //         variaveis.push(0);
-  //       } else {
-  //         variaveis.push(Number(solicitation.qtd));
-  //       }
-  //     });
-
-  //     dataAll.push({
-  //       label: solicitation.storeName,
-  //       data: variaveis,
-  //     });
-  //   }
-  // });
-
-  // else {
-  //   let index = dataAll.findIndex(
-  //     (data) => data.label === solicitation.storeName
-  //   );
-  //   dataAll[index].data = [
-  //     ...dataAll[index].data,
-  //     Number(solicitation.qtd),
-  //   ];
-  // }
-  // });
-
-  console.log(dataAll);
 
   if (pointsSolicitation) {
     return {

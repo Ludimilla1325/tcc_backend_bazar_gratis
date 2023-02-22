@@ -4,7 +4,6 @@ import { secret } from "../../../Utils/tokenSecret";
 import jwt from "jsonwebtoken";
 
 export async function login(email: string, password: string) {
-  // Buscar Usuário
   const userAlreadyExists = await prisma.cooperator.findFirst({
     where: {
       email: email,

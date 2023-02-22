@@ -29,7 +29,6 @@ import { PurchaseLastNinetyDaysPerStore } from "../Modules/dashboard/useCases/ma
 import { topSellingProducts } from "../Modules/dashboard/useCases/topSellingProducts";
 
 export class DashboardController {
-  ////]
   static async pointsSolicitationLastNinetyDaysPerStore(
     req: Request,
     res: Response
@@ -51,7 +50,6 @@ export class DashboardController {
     }
   }
 
-  ////
   static async pointsSolicitationByStorePercentage(
     req: Request,
     res: Response
@@ -86,8 +84,6 @@ export class DashboardController {
     }
   }
 
-  /////////////////
-
   static async pointsSolicitationPercentage(req: Request, res: Response) {
     try {
       const result = await pointsSolicitationPercentage();
@@ -116,8 +112,6 @@ export class DashboardController {
       return res.status(400).json(error);
     }
   }
-
-  ////////////////////
 
   static async pointsSolicitationLastThirtyDaysApprovedByStore(
     req: Request,

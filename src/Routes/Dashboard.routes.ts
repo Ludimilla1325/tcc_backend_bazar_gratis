@@ -10,7 +10,6 @@ router.get(
   `/purchase-delivered/perStore`,
   DashboardController.PurchaseLastNinetyDaysPerStore
 );
-//
 
 router.get(
   `/points-solicitation/percentage/:storeId`,
@@ -30,8 +29,6 @@ router.get(
   `/total-number-client/:storeId`,
   DashboardController.totalNumOfClientsByStore
 );
-
-// Master
 
 router.get(
   `/points-solicitation/percentage`,

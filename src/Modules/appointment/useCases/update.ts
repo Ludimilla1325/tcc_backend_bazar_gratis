@@ -7,9 +7,6 @@ export async function update({
   storeId,
   id,
 }: CreateAppointmentDTO) {
-  // Verificar se o usuário já existe
-
-  // Criar o usuário
   const data = await prisma.appointment.update({
     where: { id: id },
     data: {

@@ -14,7 +14,6 @@ export class CreateUserUseCase {
     password,
     points,
   }: ClientDTO): Promise<Client> {
-    // Verificar se o usuário já existe
     const userAlreadyExists = await prisma.client.findFirst({
       where: {
         email: email,
@@ -26,7 +25,6 @@ export class CreateUserUseCase {
     }
 
     password = hash(password);
-    // Criar o usuário
     const user = await prisma.client.create({
       data: {
         name,

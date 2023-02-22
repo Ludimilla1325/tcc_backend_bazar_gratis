@@ -6,8 +6,6 @@ export async function create(
   { name, localization, maxPoints }: CreateStoreDTO,
   masterId: number
 ) {
-  // Verificar se o usuário já existe
-
   const master = await checkMasterById(masterId);
 
   if (master) {

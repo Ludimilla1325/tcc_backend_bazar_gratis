@@ -10,7 +10,6 @@ export async function updatePassword(
   oldPass: string,
   newPassword: string
 ) {
-  // Verificar se o usuário já existe
   const user = await prisma.client.findFirst({
     where: {
       email: email,
