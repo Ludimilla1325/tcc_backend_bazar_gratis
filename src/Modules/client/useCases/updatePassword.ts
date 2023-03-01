@@ -10,7 +10,7 @@ export async function updatePassword(
   oldPass: string,
   newPassword: string
 ) {
-  const user = await prisma.client.findFirst({
+  const user = await prisma.cooperator.findFirst({
     where: {
       email: email,
     },
@@ -23,7 +23,7 @@ export async function updatePassword(
   const validatePass = await compare(oldPass, user.password);
   if (validatePass) {
     newPassword = hash(newPassword);
-    await prisma.client.update({
+    await prisma.cooperator.update({
       where: { email: email },
       data: {
         password: newPassword,

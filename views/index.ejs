@@ -16,13 +16,22 @@
     </script>
     <style>
       input[type="password"] {
-        width: 70%;
+        /* width: 70%; */
         box-sizing: border-box;
         text-align: center;
         margin: auto;
-
         display: block;
+        padding: 0.6vw;
+        min-width: 20vw;
+        min-height: 2vw;
+        margin-bottom: 1vh;
+        border: none;
+        border-radius: 0.25rem;
+        font-size: max(1vw, 10px);
+        color: #ffffff;
+        background-color: #245285;
       }
+
       input[type="submit"] {
         background-color: #c9407d;
         border: none;
@@ -32,14 +41,21 @@
         cursor: pointer;
         margin: auto;
         display: block;
+        color: white;
+        min-width: 20vw;
+        padding: 0.6vw;
+        border-radius: 0.25rem;
+        margin-bottom: 2vh;
+        font-size: max(1.2vw, 12px);
       }
-      h2 {
+      h1 {
         text-align: center;
+        color: #245285;
       }
     </style>
   </head>
   <body>
-    <h2>Alterar Senha</h2>
+    <h1>Alterar Senha</h1>
     <form>
       <input
         type="password"
